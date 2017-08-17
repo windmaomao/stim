@@ -1,0 +1,15 @@
+/**
+ * General layout
+ *
+ * @date 07/27/17
+ * @author Fang Jin <fang-a.jin@db.com>
+ */
+
+aside.sidebar {
+  width: 260px;
+  left: -270px;
+
+  @media (min-width: $screen-md-min) {
+    left: 0;
+  }
+}

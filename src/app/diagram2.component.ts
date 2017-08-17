@@ -7,6 +7,7 @@
 
 import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import * as go from "gojs";
+import { diagramData } from './diagram2.data';
 
 @Component({
   template: `
@@ -18,6 +19,12 @@ import * as go from "gojs";
 })
 export class STDiagram2Component implements AfterViewInit {
   @ViewChild('myDiagramDiv') element: ElementRef;
+
+  public json: Object;
+
+  constructor() {
+    this.json = diagramData;
+  }
 
   ngAfterViewInit() {
     const $ = go.GraphObject.make;
@@ -48,7 +55,6 @@ export class STDiagram2Component implements AfterViewInit {
         { key: "Alpha", color: "lightblue" },
         { key: "Beta", color: "orange" },
         { key: "Gamma", color: "lightgreen" },
-        { key: "Delta", color: "pink" }
       ],
       [
         { from: "Alpha", to: "Beta" },

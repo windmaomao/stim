@@ -7,13 +7,14 @@
 
 import { NgModule } from '@angular/core';
 import { STSidebarComponent } from './sidebar.component';
+import { STNavbarComponent } from './navbar.component';
 
 @NgModule({
   declarations: [
-    STSidebarComponent,
+    STSidebarComponent, STNavbarComponent
   ],
   exports: [
-    STSidebarComponent,
+    STSidebarComponent, STNavbarComponent
   ]
 })
 export class STLayoutModule {}

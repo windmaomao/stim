@@ -10,6 +10,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 @Component({
   templateUrl: './crud.component.html',
+  styleUrls: ['./crud.component.scss']
 })
 export class STCrudComponent {
   items: FirebaseListObservable<any[]>;

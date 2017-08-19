@@ -1,14 +1,53 @@
-<div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
+  <md-sidenav #sidenav class="aside bs-docs-aside" tabindex="-1" role="dialog">
+      <div class="close">
+        <div class="btn btn-round btn-info" (click)="sidenav.close()"><i class="md md-close"></i></div>
+      </div>
+
+      <div class="aside-dialog">
+        <div class="aside-body bs-sidebar">
+
+          <form class="form-floating" novalidate="novalidate" ng-submit="saveItem(item)">
+            <fieldset>
+              <legend><span ng-bind-html="item.icon"></span> Edit Diagram </legend>
+
+              <div class="form-group filled">
+                <label class="control-label">Firstname</label>
+                <input type="text" class="form-control" ng-model="item.firstname" ng-disabled="!item.editing" required>
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Lastname</label>
+                <input type="text" class="form-control" ng-model="item.lastname" ng-disabled="!item.editing">
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Summary</label>
+                <textarea class="form-control vertical" rows="3" ng-model="item.paragraph" ng-disabled="!item.editing"></textarea>
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-lg btn-primary" ng-hide="!item.editing">Save</button>
+              </div>
+
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+  </md-sidenav>
+
+<div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="" >
   <section>
     <div class="page-header">
       <div class="actions">
         <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-info-outline"></span></button>
         <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-search"></span></button>
       </div>
-      <h1>      <i class="md md-camera"></i>      Crud application    </h1>
+      <h1>      <i class="md md-camera"></i>      All Diagrams    </h1>
       <p class="lead"> In most applications you need basic table listings and editing capabilities. With this app you can create simple admin functionality based on a json web service. <u>Exclusively on Site and Tower</u>. </p>
     </div>
   </section>
+
   <div>
     <div class="table-responsive well no-padding white no-margin">
       <h3 class="table-title">90 Items available</h3>
@@ -462,9 +501,10 @@
       </table>
     </div>
     <div class="footer-buttons">
-      <div class="btn btn-primary btn-round btn-lg m-r-10 btn-footer" data-title="Remove 0 item(s)" data-toggle="tooltip"><i class="md md-delete"></i></div>
-      <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip"><i class="md md-arrow-drop-up"></i></div>
-      <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip"><i class="md md-add"></i></div>
+      <!-- <div class="btn btn-primary btn-round btn-lg m-r-10 btn-footer" data-title="Remove 0 item(s)" data-toggle="tooltip"><i class="md md-delete"></i></div>
+      <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip"><i class="md md-arrow-drop-up"></i></div> -->
+      <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip" (click)="sidenav.open()"><i class="md md-add"></i></div>
     </div>
   </div>
+
 </div>

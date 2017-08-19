@@ -6,6 +6,7 @@
  */
 
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { STLayoutModule } from '../layout/layout.module';
@@ -17,9 +18,13 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { appComponents, appRoutes } from './app.routes';
 
+import { MdButtonModule } from '@angular/material';
+import { MdSidenavModule } from '@angular/material';
+
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     STLayoutModule,
     RouterModule.forRoot(appRoutes, {
       useHash: true
@@ -27,6 +32,7 @@ import { appComponents, appRoutes } from './app.routes';
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    MdButtonModule, MdSidenavModule,
   ],
   declarations: [
     appComponents

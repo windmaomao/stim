@@ -14,7 +14,14 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class STCrudComponent {
   items: FirebaseListObservable<any[]>;
+  editing:boolean;
+
   constructor(db: AngularFireDatabase) {
     this.items = db.list('/STIM/items');
+    this.editing = false;
+  }
+
+  toggleEditor() {
+    this.editing = !this.editing;
   }
 }

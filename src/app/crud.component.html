@@ -79,7 +79,9 @@
             <tbody>
               <tr *ngFor="let item of items | async">
                 <td><input type="checkbox" class="relative"></td>
-                <td ng-bind-html="item.icon" class="f20"><i class="md md-more-vert purple darken-1 icon-color"></i></td>
+                <td class="f20">
+                  <i class="md darken-1 icon-color" [ngClass]="[item.icon]"></i>
+                </td>
                 <td>{{ item.author }}</td>
                 <td>{{ item.title }}</td>
                 <td>{{ item.description }}</td>

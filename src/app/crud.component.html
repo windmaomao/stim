@@ -2,8 +2,14 @@
 
 <div class="main-container">
   <st-navbar></st-navbar>
-  <md-sidenav-container>
 
+  <div class="footer-buttons">
+    <!-- <div class="btn btn-primary btn-round btn-lg m-r-10 btn-footer" data-title="Remove 0 item(s)" data-toggle="tooltip"><i class="md md-delete"></i></div>
+    <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip"><i class="md md-arrow-drop-up"></i></div> -->
+    <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip" (click)="sidenav.open()"><i class="md md-add"></i></div>
+  </div>
+
+  <md-sidenav-container>
     <md-sidenav #sidenav class="aside bs-docs-aside" tabindex="-1" role="dialog">
         <div class="close">
           <div class="btn btn-round btn-info" (click)="sidenav.close()"><i class="md md-close"></i></div>
@@ -506,12 +512,8 @@
             </tbody>
           </table>
         </div>
-        <div class="footer-buttons">
-          <!-- <div class="btn btn-primary btn-round btn-lg m-r-10 btn-footer" data-title="Remove 0 item(s)" data-toggle="tooltip"><i class="md md-delete"></i></div>
-          <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip"><i class="md md-arrow-drop-up"></i></div> -->
-          <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip" (click)="sidenav.open()"><i class="md md-add"></i></div>
-        </div>
       </div>
+
 
     </div>
   </md-sidenav-container>

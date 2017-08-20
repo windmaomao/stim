@@ -38,11 +38,21 @@ export class STCrudComponent {
     }
   }
 
+  // tell if in edit or new mode
+  editing() {
+    if (this.selected) {
+      if (this.selected.$key) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   // start to edit an item
   edit(item:any) {
     this.selected = Object.assign({}, item);
     this.selected.$key = item.$key;
-    console.log(this.selected);
+    // console.log(this.selected);
     this.editor(true);
   }
 

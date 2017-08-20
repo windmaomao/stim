@@ -20,7 +20,7 @@
 
             <form class="form-floating" novalidate="novalidate" ng-submit="saveItem(item)">
               <fieldset>
-                <legend><span ng-bind-html="item.icon"></span> Edit Diagram </legend>
+                <legend><span ng-bind-html="item.icon"></span> {{ editing() ? 'Edit' : 'New' }} Diagram </legend>
 
                 <div class="form-group filled">
                   <label class="control-label">Title</label>
@@ -97,7 +97,7 @@
                 <td>{{ item.description }}</td>
                 <td class="text-right">
                   <button type="button" class="btn btn-link btn-round" data-title="Edit item" (click)="edit(item)"><i class="md md-edit"></i></button>
-                  <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+                  <!-- <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button> -->
                   <button type="button" class="btn btn-link btn-round" data-title="Delete item" (click)="del(item)"><i class="md md-delete"></i></button>
                 </td>
               </tr>

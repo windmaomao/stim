@@ -5,8 +5,9 @@
  * @author Fang Jin <windmaomao@gmail.com>
  */
 
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { MdSidenav } from '@angular/material';
 
 @Component({
   templateUrl: './crud.component.html',
@@ -14,14 +15,30 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class STCrudComponent {
   items: FirebaseListObservable<any[]>;
-  editing:boolean;
+  // editing:boolean;
+  selected: any = null;
+  @ViewChild('sidenav') sidenav: MdSidenav;
 
   constructor(db: AngularFireDatabase) {
     this.items = db.list('/STIM/items');
-    this.editing = false;
+    this.selected = this.item();
+    // this.editing = false;
   }
 
-  toggleEditor() {
-    this.editing = !this.editing;
+  item() {
+    return { title: '' };
+  }
+
+  editor(on) {
+    if (on) {
+      this.sidenav.open();
+    } else {
+      this.sidenav.close();
+    }
+  }
+
+  edit(item:any) {
+    this.selected = item;
+    this.editor(true);
   }
 }

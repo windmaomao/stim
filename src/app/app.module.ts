@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { appComponents, appRoutes } from './app.routes';
 
+import { FormsModule } from '@angular/forms';
 import { MdButtonModule } from '@angular/material';
 import { MdSidenavModule } from '@angular/material';
 
@@ -32,6 +33,7 @@ import { MdSidenavModule } from '@angular/material';
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    FormsModule,
     MdButtonModule, MdSidenavModule,
   ],
   declarations: [

@@ -6,13 +6,13 @@
   <div class="footer-buttons">
     <!-- <div class="btn btn-primary btn-round btn-lg m-r-10 btn-footer" data-title="Remove 0 item(s)" data-toggle="tooltip"><i class="md md-delete"></i></div>
     <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip"><i class="md md-arrow-drop-up"></i></div> -->
-    <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip" (click)="sidenav.open()"><i class="md md-add"></i></div>
+    <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip" (click)="editor(true)"><i class="md md-add"></i></div>
   </div>
 
   <md-sidenav-container>
     <md-sidenav #sidenav class="aside bs-docs-aside" tabindex="-1" role="dialog">
         <div class="close">
-          <div class="btn btn-round btn-info" (click)="sidenav.close()"><i class="md md-close"></i></div>
+          <div class="btn btn-round btn-info" (click)="editor(false)"><i class="md md-close"></i></div>
         </div>
 
         <div class="aside-dialog">
@@ -23,22 +23,27 @@
                 <legend><span ng-bind-html="item.icon"></span> Edit Diagram </legend>
 
                 <div class="form-group filled">
-                  <label class="control-label">Firstname</label>
-                  <input type="text" class="form-control" ng-model="item.firstname" ng-disabled="!item.editing" required>
+                  <label class="control-label">Title</label>
+                  <input type="text" class="form-control" [(ngModel)]="selected.title" name="title" required>
                 </div>
 
                 <div class="form-group filled">
-                  <label class="control-label">Lastname</label>
-                  <input type="text" class="form-control" ng-model="item.lastname" ng-disabled="!item.editing">
+                  <label class="control-label">Author</label>
+                  <input type="text" class="form-control" [(ngModel)]="selected.author" name="author">
                 </div>
 
                 <div class="form-group filled">
-                  <label class="control-label">Summary</label>
-                  <textarea class="form-control vertical" rows="3" ng-model="item.paragraph" ng-disabled="!item.editing"></textarea>
+                  <label class="control-label">Description</label>
+                  <textarea class="form-control vertical" rows="3" [(ngModel)]="selected.description" name="description"></textarea>
+                </div>
+
+                <div class="form-group filled">
+                  <label class="control-label">Diagram</label>
+                  <pre style="height: 200px;">{{ selected.diagram | json }}</pre>
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="btn btn-lg btn-primary" ng-hide="!item.editing">Save</button>
+                  <button type="submit" class="btn btn-lg btn-primary" ng-hide="!item.editing" (click)="editor(false)">Save</button>
                 </div>
 
               </fieldset>
@@ -69,10 +74,10 @@
                 <th>
                   <input type="checkbox" class="relative">
                 </th>
-                <th>Icon</th>
-                <th fsm-sort="firstname" style="cursor: pointer; ">Name&nbsp;<i class="md md-sort"></i></th>
-                <th fsm-sort="lastname" style="cursor: pointer; ">Last&nbsp;<i class="md md-sort"></i></th>
-                <th>Summary</th>
+                <th>Type</th>
+                <th fsm-sort="firstname" style="cursor: pointer; ">Author&nbsp;<i class="md md-sort"></i></th>
+                <th fsm-sort="lastname" style="cursor: pointer; ">Title&nbsp;<i class="md md-sort"></i></th>
+                <th>Description</th>
                 <th class="text-right">Actions</th>
               </tr>
             </thead>
@@ -86,7 +91,7 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.description }}</td>
                 <td class="text-right">
-                  <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+                  <button type="button" class="btn btn-link btn-round" data-title="Edit item" (click)="edit(item)"><i class="md md-edit"></i></button>
                   <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
                   <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
                 </td>
@@ -100,7 +105,7 @@
                 <td><a [routerLink]="['/item']">McClure</a></td>
                 <td><a [routerLink]="['/item']">Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor.</a></td>
                 <td class="text-right">
-                  <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+                  <button type="button" class="btn btn-link btn-round" data-title="Edit item" (click)="edit(item)"><i class="md md-edit"></i></button>
                   <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
                   <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
                 </td>

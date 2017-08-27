@@ -20,42 +20,29 @@
               <div class="btn btn-round-sm btn-link" data-toggle="tooltip" title="Write new document"><i class="md md-insert-drive-file"></i></div>
               <div class="btn btn-round-sm btn-link" data-toggle="tooltip" title="Add new user"><i class="md md-person-add"></i></div>
             </div>
-            <h4 class="grey-text">          <i class="md md-dashboard"></i>          <span class="hidden-xs">CV</span>        </h4> </div>
+            <h4 class="grey-text">          <i class="md md-dashboard"></i>          <span class="hidden-xs">Blog</span>        </h4> </div>
           <div class="p-20 no-p-t">
-            <div class="row gutter-14 kpi-dashboard" *ngFor="let item of [1,2,3,4,5]">
-              <div class="col-md-4">
-                <div class="card blue darken-2">
-                  <div class="card-content"> <span class="card-title">Middle Ground bordered</span>
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            <div class="row gutter-14">
+              <div class="col-md-6" *ngFor="let entry of entries | async">
+                <div class="card bordered">
+                  <!-- <div class="card-header">{{ entry.title }}</div> -->
+                  <div class="card-content">
+                    <div class="pull-right" style="opacity: 0.1">
+                      <button type="button" class="btn btn-xs btn-round btn-primary"><span class="md md-edit"></span></button>
+                    </div>
+                    <p class="card-title">{{ entry.title }}</p>
+                    <p style="height: 30px;">{{ entry.subtitle || '&nbsp;' }}</p>
+                    <p>
+                      <span class="label grey">{{ entry.section | titlecase }}</span>
+                    </p>
                   </div>
-                  <div class="card-action clearfix">
-                    <div class="pull-right"> <a href="#" class="btn btn-link black-text">This is a link</a> </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card red">
-                  <div class="card-content"> <span class="card-title">Reusable form</span>
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                  </div>
-                  <div class="card-action clearfix">
-                    <div class="pull-right"> <a href="#" class="btn btn-link black-text">This is a link</a> </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card teal lighten-1">
-                  <div class="card-content"> <span class="card-title">Reusable form</span>
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                  </div>
-                  <div class="card-action clearfix">
-                    <div class="pull-right"> <a href="#" class="btn btn-link black-text">This is a link</a> </div>
-                  </div>
+                  <!-- <div class="card-action clearfix">
+                  </div> -->
                 </div>
               </div>
             </div>
 
-            <div class="grey-text small p-t-20">Materialism by Theme-Guys - v1.1.4</div>
+            <!-- <div class="grey-text small p-t-20">Materialism by Theme-Guys - v1.1.4</div> -->
           </div>
         </div>
         <div class="col-lg-3 col-md-12">
@@ -87,8 +74,8 @@
                       <td><i class="md md-arrow-drop-up green-text"></i></td>
                     </tr>
                     <tr>
-                      <td>Blog</td>
-                      <td>22</td>
+                      <td><b>Blog</b></td>
+                      <td><b>22</b></td>
                       <td><i class="md md-arrow-drop-up green-text"></i></td>
                     </tr>
                     <tr>

@@ -6,6 +6,7 @@
  */
 
 import { Component } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 // import { diagramData } from './diagram2.data';
 
 @Component({
@@ -13,9 +14,14 @@ import { Component } from '@angular/core';
   // styleUrls: ['./diagram.component.scss']
 })
 export class CVEntryComponent {
-  public json: Object;
+  json: Object;
 
-  constructor() {
-    // this.json = diagramData;
+  entries: FirebaseListObservable<any[]>;
+  selected: any = null;
+
+  constructor(db: AngularFireDatabase) {
+    this.entries = db.list('/QPLOT/cv/entries');
+    this.entries.subscribe(x => console.log(x));
   }
+
 }

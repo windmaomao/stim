@@ -20,21 +20,22 @@
               <div class="btn btn-round-sm btn-link" data-toggle="tooltip" title="Write new document"><i class="md md-insert-drive-file"></i></div>
               <div class="btn btn-round-sm btn-link" data-toggle="tooltip" title="Add new user"><i class="md md-person-add"></i></div>
             </div>
-            <h4 class="grey-text">          <i class="md md-dashboard"></i>          <span class="hidden-xs">Blog</span>        </h4> </div>
+            <h4 class="grey-text">          <i class="md md-dashboard"></i>          <span class="hidden-xs">Filtered entries</span>        </h4> </div>
           <div class="p-20 no-p-t">
             <div class="row gutter-14">
               <div class="col-md-6" *ngFor="let entry of entries | async">
-                <div class="card bordered">
+                <div class="card bordered" [ngClass]="{ 'grey lighten-3': entry.excluded }">
                   <!-- <div class="card-header">{{ entry.title }}</div> -->
                   <div class="card-content">
                     <div class="pull-right" style="opacity: 0.1">
-                      <button type="button" class="btn btn-xs btn-round btn-primary"><span class="md md-edit"></span></button>
+                      <button type="button" class="btn btn-xs btn-round btn-"><span class="md md-edit"></span></button>
                     </div>
                     <p class="card-title">{{ entry.title }}</p>
-                    <p style="height: 30px;">{{ entry.subtitle || '&nbsp;' }}</p>
-                    <p>
-                      <span class="label grey">{{ entry.section | titlecase }}</span>
+                    <p style="height: 40px;">{{ entry.subtitle || '&nbsp;' }}</p>
+                    <p class="pull-right">
+                      <small><i>{{ entry.createdAt }}</i></small>
                     </p>
+                    <p><span class="label grey">{{ entry.section | titlecase }}</span></p>
                   </div>
                   <!-- <div class="card-action clearfix">
                   </div> -->
@@ -54,7 +55,7 @@
                 </li>
               </ul>
             </div>
-            <h4 class="grey-text m-b-30">Entries</h4>
+            <h4 class="grey-text m-b-30">Sections</h4>
             <div class="card">
               <div class="p-10 p-l-20 p-r-20 clearfix">
                 <div class="badge pull-right">10</div>

@@ -7,20 +7,11 @@
 
 import { Route } from "@angular/router";
 import { AppComponent } from "./app.component";
-import { STDiagramComponent } from "./diagram.component";
-import { STDiagram2Component } from "./diagram2.component";
-import { CVEntryComponent } from "./entry.component";
 
 export const appRoutes: Route[] = [
-  { path: '', pathMatch: 'full' , redirectTo: '/diagrams' },
-  { path: 'item', component: STDiagramComponent },
-  { path: 'item2', component: STDiagram2Component },
-  { path: 'entries', component: CVEntryComponent },
+  { path: '', pathMatch: 'full' , redirectTo: '/dashboard' },
 ]
 
 export const appComponents = [
   AppComponent,
-  STDiagramComponent,
-  STDiagram2Component,
-  CVEntryComponent
 ]

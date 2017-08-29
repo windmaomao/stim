@@ -10,7 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { STLayoutModule } from '../layout/layout.module';
+import { SampleModule } from '../sample/sample.module';
 import { DiagramModule } from '../diagram/diagram.module';
+import { CvModule } from '../cv/cv.module';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -28,7 +30,9 @@ import { MdSidenavModule } from '@angular/material';
     BrowserModule,
     BrowserAnimationsModule,
     STLayoutModule,
+    SampleModule,
     DiagramModule,
+    CvModule,
     RouterModule.forRoot(appRoutes, {
       useHash: true
       // enableTracing: true

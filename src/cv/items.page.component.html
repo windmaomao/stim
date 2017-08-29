@@ -1,0 +1,116 @@
+<st-sidebar></st-sidebar>
+
+<div class="main-container">
+  <st-navbar></st-navbar>
+
+  <div class="footer-buttons">
+    <!-- <div class="btn btn-primary btn-round btn-lg m-r-10 btn-footer" data-title="Remove 0 item(s)" data-toggle="tooltip"><i class="md md-delete"></i></div>
+    <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip"><i class="md md-arrow-drop-up"></i></div> -->
+    <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip" (click)="add()"><i class="md md-add"></i></div>
+  </div>
+
+  <md-sidenav-container>
+    <md-sidenav #sidenav class="aside bs-docs-aside" tabindex="-1" role="dialog">
+      <div class="close">
+        <div class="btn btn-round btn-info" (click)="editor(false)"><i class="md md-close"></i></div>
+      </div>
+
+      <div class="aside-dialog">
+        <div class="aside-body bs-sidebar">
+
+          <form class="form-floating" novalidate="novalidate" ng-submit="saveItem(item)">
+            <fieldset>
+              <legend><span ng-bind-html="item.icon"></span> {{ editing() ? 'Edit' : 'New' }} Item </legend>
+
+              <div class="form-group filled">
+                <label class="control-label">Title</label>
+                <input type="text" class="form-control" [(ngModel)]="selected.title" name="title" required>
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Subtitle</label>
+                <input type="text" class="form-control" [(ngModel)]="selected.subtitle" name="subtitle">
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Section</label>
+                <input type="text" class="form-control" [(ngModel)]="selected.section" name="section">
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Description</label>
+                <textarea class="form-control vertical" rows="3" [(ngModel)]="selected.description" name="description"></textarea>
+              </div>
+
+              <!-- <div class="form-group filled">
+                <label class="control-label">Diagram</label>
+                <pre style="height: 200px;">{{ selected.diagram | json }}</pre>
+              </div> -->
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-lg btn-primary" >Save</button>
+              </div>
+
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+    </md-sidenav>
+
+    <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="" >
+      <section>
+        <div class="page-header">
+          <div class="actions">
+            <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-info-outline"></span></button>
+            <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-search"></span></button>
+          </div>
+          <h1>      <i class="md md-camera"></i>      All items    </h1>
+          <p class="lead"> ... </p>
+        </div>
+      </section>
+
+      <div>
+
+        <div class="table-responsive well no-padding white no-margin">
+          <h3 class="table-title">{{ items.length }} Items available</h3>
+          <table class="table table-full m-b-60" id="table-area-1">
+            <thead>
+              <tr fsm-sticky-header="" scroll-body="'#table-area-1'" scroll-stop="64">
+                <th>
+                  <input type="checkbox" class="relative">
+                </th>
+                <th>Icon</th>
+                <th fsm-sort="firstname" style="cursor: pointer; ">Section&nbsp;<i class="md md-sort"></i></th>
+                <th fsm-sort="lastname" style="cursor: pointer; ">Title&nbsp;<i class="md md-sort"></i></th>
+                <!-- <th>More</th> -->
+                <th>Created</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items | async">
+                <td><input type="checkbox" class="relative"></td>
+                <td class="f20">
+                  <i class="md darken-1 icon-color" [ngClass]="icon(item.section)"></i>
+                </td>
+                <td>{{ item.section | titlecase }}</td>
+                <td>{{ item.title }}</td>
+                <!-- <td>{{ item.value.subtitle }}</td> -->
+                <td>{{ item.createdAt }}</td>
+                <td class="text-right">
+                  <!-- <button type="button" class="btn btn-link btn-round" data-title="Delete item" (click)="del(item)"><i class="md md-delete"></i></button> -->
+                  <button type="button" class="btn btn-link btn-round" data-title="Edit item" (click)="edit(item)"><i class="md md-edit"></i></button>
+                  <!-- <a [routerLink]="['/diagram', item.$key]" class="btn btn-link btn-round" data-title="View item"><i class="md md-perm-media"></i></a> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+  </md-sidenav-container>
+
+</div>

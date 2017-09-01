@@ -1,0 +1,97 @@
+<st-sidebar></st-sidebar>
+
+<div class="main-container">
+  <st-navbar></st-navbar>
+
+  <div class="footer-buttons">
+    <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip">
+      <i class="md md-arrow-drop-up"></i>
+    </div>
+    <div class="btn btn-primary btn-round btn-lg" data-title="Edit Item" data-toggle="tooltip" (click)="sidenav.toggle()">
+      <i class="md md-edit"></i>
+    </div>
+  </div>
+
+  <md-sidenav-container *ngIf="item">
+    <md-sidenav #sidenav class="aside bs-docs-aside" tabindex="-1" role="dialog">
+      <div class="close">
+        <div class="btn btn-round btn-info" (click)="sidenav.toggle()">
+          <i class="md md-close"></i>
+        </div>
+      </div>
+
+      <div class="aside-dialog">
+        <div class="aside-body bs-sidebar">
+
+          <form class="form-floating" novalidate="novalidate">
+            <fieldset>
+              <legend><span ng-bind-html="item.icon"></span> Edit Item </legend>
+
+              <div class="form-group filled">
+                <label class="control-label">Title</label>
+                <input type="text" class="form-control" [(ngModel)]="item.title" name="title" required>
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Subtitle</label>
+                <input type="text" class="form-control" [(ngModel)]="item.subtitle" name="subtitle">
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Section</label>
+                <input type="text" class="form-control" [(ngModel)]="item.section" name="section">
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Notes</label>
+                <textarea class="form-control vertical" rows="3" [(ngModel)]="item.notes" name="notes"></textarea>
+              </div>
+
+              <div class="form-group filled">
+                <label class="control-label">Description</label>
+                <textarea class="form-control vertical" rows="8" [(ngModel)]="item.description" name="description"></textarea>
+              </div>
+
+              <!-- <div class="form-group filled">
+                <label class="control-label">Diagram</label>
+                <pre style="height: 200px;">{{ selected.diagram | json }}</pre>
+              </div> -->
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-lg btn-primary" >Save</button>
+              </div>
+
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+    </md-sidenav>
+
+    <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="" *ngIf="item">
+      <section>
+        <div class="page-header">
+          <div class="actions">
+            <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-info-outline"></span></button>
+            <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-search"></span></button>
+          </div>
+          <h1>
+            <i class="md md-camera"></i>
+            {{ item.title }}
+            <small>{{ item.subtitle }}</small>
+          </h1>
+          <!-- <p class="lead">{{ item.notes }}</p> -->
+          <div class="lead" *ngIf="item.notes">
+            <markdown [data]="item.notes"></markdown>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <markdown [data]="item.description"></markdown>
+      </section>
+    </div>
+
+  </md-sidenav-container>
+
+</div>

@@ -1,33 +1,30 @@
 /**
- * Cv module
- * Page responsible for listing and editing cv
+ * Account module
  *
- * @date 08/25/17
+ * @date 09/01/17
  * @author Fang Jin <windmaomao@gmail.com>
  */
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { StLayoutModule } from '../layout/layout.module';
 import { ApiModule } from '../api/api.module';
-
-import { cvComponents, cvRoutes } from './cv.routes';
-
-import { MarkdownModule } from 'angular2-markdown';
+import { RouterModule } from '@angular/router';
+import { AccountComponents, AccountRoutes } from './account.routes';
+// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     BrowserModule,
     StLayoutModule,
     ApiModule,
-    RouterModule.forChild(cvRoutes),
-    MarkdownModule.forRoot(),
+    RouterModule.forChild(AccountRoutes),
+    // NgxDatatableModule
   ],
   declarations: [
-    cvComponents
+    AccountComponents
   ],
   providers: [],
   bootstrap: []
 })
-export class CvModule { }
+export class AccountModule { }

@@ -8,7 +8,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { DiagramService } from '../api/diagram.service';
 import * as go from "gojs";
 
 const $ = go.GraphObject.make;
@@ -22,15 +22,13 @@ export class DiagramDetailPageComponent implements AfterViewInit, OnInit, OnDest
   diagram: go.Diagram;
   id: string;
   private sub: any;
-  private item: FirebaseObjectObservable<any>;
 
-  constructor(private route: ActivatedRoute, private db: AngularFireDatabase) {}
+  constructor(private route: ActivatedRoute, private ds: DiagramService) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.item = this.db.object('/STIM/items/' + this.id);
-      this.item.subscribe(item => {
+      this.ds.get(this.id).subscribe(item => {
         console.log(item.diagram);
         this.render(item.diagram);
       });

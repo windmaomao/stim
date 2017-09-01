@@ -6,15 +6,26 @@
  */
 
 import { NgModule } from '@angular/core';
-import { STSidebarComponent } from './sidebar.component';
-import { STNavbarComponent } from './navbar.component';
+
+import { FormsModule } from '@angular/forms';
+import { MdButtonModule } from '@angular/material';
+import { MdSidenavModule } from '@angular/material';
+
+import { StSidebarComponent } from './sidebar.component';
+import { StNavbarComponent } from './navbar.component';
 
 @NgModule({
+  imports: [
+    FormsModule,
+    MdButtonModule, MdSidenavModule,
+  ],
   declarations: [
-    STSidebarComponent, STNavbarComponent
+    StSidebarComponent, StNavbarComponent
   ],
   exports: [
-    STSidebarComponent, STNavbarComponent
+    FormsModule,
+    MdButtonModule, MdSidenavModule,
+    StSidebarComponent, StNavbarComponent
   ]
 })
-export class STLayoutModule {}
+export class StLayoutModule {}

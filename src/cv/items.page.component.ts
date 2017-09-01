@@ -1,27 +1,40 @@
 /**
- * Diagram list page component
+ * List page component
  *
  * @date 08/21/17
  * @author Fang Jin <windmaomao@gmail.com>
  */
 
-import { Component, ViewChild } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { MdSidenav } from '@angular/material';
+
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+
+import { DataService } from '../api/data.service';
 
 @Component({
   templateUrl: './items.page.component.html',
   styleUrls: ['./cv.scss']
 })
-export class CvItemsPageComponent {
-  items: FirebaseListObservable<any[]>;
-  icons: any;
+export class CvItemsPageComponent implements OnInit {
+  public items$: Observable<any[]>;
+  private icons: any;
   selected: any = null;
   @ViewChild('sidenav') sidenav: MdSidenav;
+  private filter$: Subject<any>;
+  private _entriesAll: any[];
+  private _sectionsAll: any[];
+  entries: any[];
+  metas: any;
 
-  constructor(db: AngularFireDatabase) {
-    this.items = db.list('/QPLOT/cv/entries');
-    // this.items.subscribe(x => console.log(x));
+  constructor(private db: AngularFireDatabase, private ds: DataService) {
     this.selected = this.item();
     this.icons = {
       project: 'md-web blue',
@@ -34,8 +47,79 @@ export class CvItemsPageComponent {
       picture: 'md-image orange',
       recommend: 'md-thumb-up green',
       profile: 'md-portrait deep-orange',
-    }
+    };
   }
+
+  ngOnInit() {
+    this.filter$ = new Subject();
+    // this.items$ = this.entriesSource(this.filter$);
+    this.items$ = this.entriesBy(this.filter$);
+    this.items$.subscribe(res => {
+      this.entries = res;
+      // console.log('Items', res);
+    });
+    let api = '/QPLOT/cv';
+    // get all entires and store in entriesAll
+    this.db.list(api + '/entries')
+      .subscribe(res => {
+        this._entriesAll = res;
+        this.filter$.next('all');
+      })
+    ;
+    this.db.list(api + '/types')
+      .subscribe(res => {
+        this._sectionsAll = res;
+        // console.log('Sections', res);
+      })
+    ;
+    this.db.object(api + '/metas')
+      .subscribe(res => {
+        // console.log(res);
+        this.metas = res;
+      })
+    ;
+  }
+
+  // returns entries list obserable
+  // entriesSource(section: Observable<any>) {
+  //   return this.db.list('/QPLOT/cv/entries', {
+  //     query: {
+  //       orderByChild: 'section',
+  //       equalTo: section
+  //     }
+  //   });
+  // }
+
+  // return entries list obserable based on filter
+  entriesBy(filters: Observable<any>) {
+    return filters.distinctUntilChanged()
+      .switchMap(filter => {
+        if (filter === 'all') {
+          return Observable.of(this._entriesAll.slice());
+        }
+        let entries = this._entriesAll.filter(item => {
+          return item.section === filter;
+        });
+        return Observable.of(entries);
+      })
+    ;
+  }
+
+  // set filter
+  filterBy(section: string) {
+    this.filter$.next(section);
+  }
+
+  // search(terms: Observable<string>) {
+  //   return terms.debounceTime(400)
+  //     .distinctUntilChanged()
+  //     .switchMap(terms => this.searchEntries(term))
+  //   ;
+  // }
+  //
+  // searchEntries(term) {
+  //
+  // }
 
   icon(type) {
     if (type in this.icons) {

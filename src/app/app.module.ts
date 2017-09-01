@@ -9,10 +9,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { STLayoutModule } from '../layout/layout.module';
+import { StLayoutModule } from '../layout/layout.module';
 import { SampleModule } from '../sample/sample.module';
 import { DiagramModule } from '../diagram/diagram.module';
 import { CvModule } from '../cv/cv.module';
+import { AccountModule } from '../account/account.module';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -21,26 +22,21 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { appComponents, appRoutes } from './app.routes';
 
-import { FormsModule } from '@angular/forms';
-import { MdButtonModule } from '@angular/material';
-import { MdSidenavModule } from '@angular/material';
-
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    STLayoutModule,
+    StLayoutModule,
     SampleModule,
     DiagramModule,
     CvModule,
+    AccountModule,
     RouterModule.forRoot(appRoutes, {
       useHash: true
       // enableTracing: true
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    FormsModule,
-    MdButtonModule, MdSidenavModule,
   ],
   declarations: [
     appComponents

@@ -7,14 +7,14 @@
 
 import { Route } from "@angular/router";
 import { CvItemsPageComponent } from "./items.page.component";
-// import { DiagramDetailPageComponent } from "./detail.page.component";
+import { CvDetailPageComponent } from "./detail.page.component";
 
 export const cvRoutes: Route[] = [
   { path: 'cvs', component: CvItemsPageComponent },
-  // { path: 'diagram/:id', component: DiagramDetailPageComponent },
+  { path: 'cv/:id', component: CvDetailPageComponent },
 ]
 
 export const cvComponents = [
   CvItemsPageComponent,
-  // DiagramDetailPageComponent,
+  CvDetailPageComponent,
 ]

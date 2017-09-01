@@ -9,23 +9,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { STLayoutModule } from '../layout/layout.module';
+import { StLayoutModule } from '../layout/layout.module';
 
 import { sampleComponents, sampleRoutes } from './sample.routes';
-
 import { Ng2TableModule } from '../ng2-table/ng-table-module';
-
-// import { FormsModule } from '@angular/forms';
-// import { MdButtonModule } from '@angular/material';
-// import { MdSidenavModule } from '@angular/material';
 
 @NgModule({
   imports: [
     BrowserModule,
-    STLayoutModule,
+    StLayoutModule,
     RouterModule.forChild(sampleRoutes),
-    // FormsModule,
-    // MdButtonModule, MdSidenavModule,
     Ng2TableModule,
   ],
   declarations: [

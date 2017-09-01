@@ -1,0 +1,64 @@
+<st-sidebar></st-sidebar>
+
+<div class="main-container">
+  <st-navbar></st-navbar>
+
+  <div class="footer-buttons">
+    <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip">
+      <i class="md md-arrow-drop-up"></i>
+    </div>
+    <div class="btn btn-primary btn-round btn-lg" data-title="Edit Item" data-toggle="tooltip" (click)="sidenav.toggle()">
+      <i class="md md-edit"></i>
+    </div>
+  </div>
+
+  <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
+    <section>
+      <div class="page-header">
+        <div class="actions">
+          <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-info-outline"></span></button>
+          <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-search"></span></button>
+        </div>
+        <h1>
+          <i class="md md-camera"></i>
+          Account Statement
+        </h1>
+        <p class="lead"></p>
+      </div>
+    </section>
+
+    <div *ngIf="statements && accounts">
+
+      <div class="table-responsive well no-padding white no-margin">
+
+        <h3 class="table-title">2017 Aug</h3>
+
+        <table class="table table-full m-b-60">
+          <thead>
+            <tr>
+              <th width="100">Icon</th>
+              <th>Account<i class="md md-sort"></i></th>
+              <th>Flow<i class="md md-sort"></i></th>
+              <th>Balance<i class="md md-sort"></i></th>
+              <th class="text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of statements">
+              <td class="f20">
+                <i class="md darken-1 icon-color"></i>
+              </td>
+              <td>{{ accounts[item.$key].title | titlecase }}</td>
+              <td>$ {{ item.flow | number:'.2' }}</td>
+              <td>$ {{ item.balance | number: '.2' }}</td>
+              <td class="text-right">
+                <a class="btn btn-link btn-round" data-title="View item"><i class="md md-perm-media"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

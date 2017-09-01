@@ -6,7 +6,7 @@
   <div class="footer-buttons">
     <!-- <div class="btn btn-primary btn-round btn-lg m-r-10 btn-footer" data-title="Remove 0 item(s)" data-toggle="tooltip"><i class="md md-delete"></i></div>
     <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip"><i class="md md-arrow-drop-up"></i></div> -->
-    <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip"><i class="md md-add"></i></div>
+    <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip" (click)="add()"><i class="md md-add"></i></div>
   </div>
 
   <md-sidenav-container>
@@ -66,21 +66,35 @@
             <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-search"></span></button>
           </div>
           <h1>      <i class="md md-camera"></i>      All items    </h1>
-          <p class="lead"> ... </p>
+          <p class="lead">{{ metas?.description }}</p>
         </div>
       </section>
 
       <div>
 
         <div class="table-responsive well no-padding white no-margin">
-          <h3 class="table-title">Items available</h3>
+
+          <div class="btn-group pull-right">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Default <span class="caret"></span><div class="ripple-wrapper"></div></button>
+            <ul class="dropdown-menu">
+              <li><a href="javascript:;" (click)="filterBy('all')">All</a> </li>
+              <li class="divider"></li>
+              <li *ngFor="let section of _sectionsAll">
+                <a href="javascript:;" (click)="filterBy(section.name)">
+                  {{ section.name | titlecase }}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h3 class="table-title">{{ entries?.length }} Items available</h3>
+
           <table class="table table-full m-b-60" id="table-area-1">
             <thead>
               <tr fsm-sticky-header="" scroll-body="'#table-area-1'" scroll-stop="64">
-                <th>
+                <th width="70">
                   <input type="checkbox" class="relative">
                 </th>
-                <th>Icon</th>
+                <th width="100">Icon</th>
                 <th fsm-sort="firstname" style="cursor: pointer; ">Section&nbsp;<i class="md md-sort"></i></th>
                 <th fsm-sort="lastname" style="cursor: pointer; ">Title&nbsp;<i class="md md-sort"></i></th>
                 <!-- <th>More</th> -->
@@ -89,7 +103,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of items | async">
+              <tr *ngFor="let item of entries">
                 <td><input type="checkbox" class="relative"></td>
                 <td class="f20">
                   <i class="md darken-1 icon-color" [ngClass]="icon(item.section)"></i>
@@ -100,8 +114,8 @@
                 <td>{{ item.createdAt }}</td>
                 <td class="text-right">
                   <!-- <button type="button" class="btn btn-link btn-round" data-title="Delete item" (click)="del(item)"><i class="md md-delete"></i></button> -->
-                  <button type="button" class="btn btn-link btn-round" data-title="Edit item" (click)="edit(item)"><i class="md md-edit"></i></button>
-                  <!-- <a [routerLink]="['/diagram', item.$key]" class="btn btn-link btn-round" data-title="View item"><i class="md md-perm-media"></i></a> -->
+                  <!-- <button type="button" class="btn btn-link btn-round" data-title="Edit item" (click)="edit(item)"><i class="md md-edit"></i></button> -->
+                  <a [routerLink]="['/cv', item.$key]" class="btn btn-link btn-round" data-title="View item"><i class="md md-perm-media"></i></a>
                 </td>
               </tr>
             </tbody>

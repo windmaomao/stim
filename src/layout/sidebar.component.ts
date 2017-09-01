@@ -13,5 +13,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./scss/styles.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class STSidebarComponent {
+export class StSidebarComponent {
 }

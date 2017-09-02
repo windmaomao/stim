@@ -15,6 +15,7 @@ import { AccountService } from '../api/account.service';
 export class AccountStatementPageComponent implements OnInit {
   accounts: any = {};
   statements: any[];
+  records: any[];    // processed
 
   constructor(private ds: AccountService) {}
 
@@ -24,14 +25,38 @@ export class AccountStatementPageComponent implements OnInit {
         res.map(item => {
           this.accounts[item.$key] = item;
         });
+        this.load();
       }
     );
+  }
+
+  load() {
     this.ds.statements('2015','4').subscribe(
-      res => this.statements = res
+      res => {
+        this.statements = res;
+        console.log(res);
+        this.records = this.prepare(this.accounts, this.statements);
+        console.log(this.records);
+      }
     );
   }
 
-  prepare() {
-
+  prepare(accounts, statements) {
+    let records = Object.assign({}, accounts);
+    Object.keys(records).forEach(account => {
+      records[account] = {
+        account: account,
+        title: accounts[account].title,
+        flow: 0.0, balance: 0.0
+      };
+    })
+    statements.forEach(statement => {
+      let account = statement.$key;
+      records[account] = Object.assign(records[account], statement);
+    });
+    return Object.keys(records).map(account => {
+      return records[account];
+    })
   }
+
 }

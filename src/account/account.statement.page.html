@@ -44,11 +44,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of statements">
+            <tr *ngFor="let item of records">
               <td class="f20">
                 <i class="md darken-1 icon-color"></i>
               </td>
-              <td>{{ accounts[item.$key].title | titlecase }}</td>
+              <td>{{ item.title | titlecase }}</td>
               <td>$ {{ item.flow | number:'.2' }}</td>
               <td>$ {{ item.balance | number: '.2' }}</td>
               <td class="text-right">

@@ -8,6 +8,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AccountService } from '../api/account.service';
 import * as _ from 'lodash';
+import { MdDialog } from '@angular/material';
+import { AccountEditDialogComponent } from './account.edit.dialog';
 
 @Component({
   templateUrl: './account.statement.page.html',
@@ -21,7 +23,7 @@ export class AccountStatementPageComponent implements OnInit {
   year: string;
   month: string;
 
-  constructor(private ds: AccountService) {}
+  constructor(private ds: AccountService, public dialog: MdDialog) {}
 
   ngOnInit() {
     this.ds.accounts().subscribe(
@@ -42,6 +44,9 @@ export class AccountStatementPageComponent implements OnInit {
     this.ds.statements(id).subscribe(res => {
       this.statements = res;
       this.records = this.prepareRecords(this.accounts, this.statements);
+      // sort by name
+      this.records = _.orderBy(this.records, ['title']);
+      // group by type
       this.maps = _.map(_.groupBy(this.records, 'type'), (records, key) => {
         return {
           type: key,
@@ -70,6 +75,17 @@ export class AccountStatementPageComponent implements OnInit {
     });
     return Object.keys(records).map(account => {
       return records[account];
+    })
+  }
+
+  // open dialog to edit account
+  editRecord() {
+    let dialogRef = this.dialog.open(AccountEditDialogComponent, {
+      width: '250px',
+      data: { name: 'Edit' }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
     })
   }
 

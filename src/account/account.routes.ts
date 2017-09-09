@@ -7,6 +7,7 @@
 
 import { Route } from "@angular/router";
 import { AccountStatementPageComponent } from "./account.statement.page";
+import { AccountEditDialogComponent } from "./account.edit.dialog";
 
 export const AccountRoutes: Route[] = [
   { path: 'accounts', component: AccountStatementPageComponent },
@@ -14,4 +15,5 @@ export const AccountRoutes: Route[] = [
 
 export const AccountComponents = [
   AccountStatementPageComponent,
+  AccountEditDialogComponent
 ]

@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MdButtonModule } from '@angular/material';
 import { MdSidenavModule } from '@angular/material';
+import { MdDialogModule } from '@angular/material';
 
 import { StSidebarComponent } from './sidebar.component';
 import { StNavbarComponent } from './navbar.component';
@@ -18,6 +19,7 @@ import { StNavbarComponent } from './navbar.component';
   imports: [
     FormsModule,
     MdButtonModule, MdSidenavModule,
+    MdDialogModule
   ],
   declarations: [
     StSidebarComponent, StNavbarComponent
@@ -25,6 +27,7 @@ import { StNavbarComponent } from './navbar.component';
   exports: [
     FormsModule,
     MdButtonModule, MdSidenavModule,
+    MdDialogModule,
     StSidebarComponent, StNavbarComponent
   ]
 })

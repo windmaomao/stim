@@ -29,8 +29,8 @@
     "core-js": "^2.4.1",
     "firebase": "^4.3.0",
     "gojs": "^1.7.18",
+    "lodash": "^4.17.4",
     "rxjs": "^5.4.1",
-    "typescript": "^2.6.0-dev.20170825",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
@@ -39,6 +39,7 @@
     "@angular/language-service": "^4.0.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
+    "@types/lodash": "^4.14.74",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.0.1",
     "jasmine-core": "~2.6.2",
@@ -52,6 +53,6 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
-    "typescript": "^2.4.2"
+    "typescript": "^2.5.2"
   }
 }

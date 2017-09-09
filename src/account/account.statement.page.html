@@ -21,22 +21,22 @@
         </div>
         <h1>
           <i class="md md-camera"></i>
-          Account Statement
+          Account Statement - 2017 Aug
         </h1>
         <p class="lead"></p>
       </div>
     </section>
 
-    <div *ngIf="statements && accounts">
+    <div *ngIf="maps">
 
-      <div class="table-responsive well no-padding white no-margin">
+      <div class="table-responsive well no-padding white no-margin" *ngFor="let entry of maps">
 
-        <h3 class="table-title">2017 Aug</h3>
+        <h3 class="table-title">{{ entry.type | titlecase }} ({{ entry.records.length }})</h3>
 
         <table class="table table-full m-b-60">
           <thead>
             <tr>
-              <th width="100">Icon</th>
+              <!-- <th width="100">Icon</th> -->
               <th>Account<i class="md md-sort"></i></th>
               <th>Flow<i class="md md-sort"></i></th>
               <th>Balance<i class="md md-sort"></i></th>
@@ -44,10 +44,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of records">
-              <td class="f20">
+            <tr *ngFor="let item of entry.records">
+              <!-- <td class="f20">
                 <i class="md darken-1 icon-color"></i>
-              </td>
+              </td> -->
               <td>{{ item.title | titlecase }}</td>
               <td>$ {{ item.flow | number:'.2' }}</td>
               <td>$ {{ item.balance | number: '.2' }}</td>

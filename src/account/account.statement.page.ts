@@ -7,6 +7,7 @@
 
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AccountService } from '../api/account.service';
+import * as _ from 'lodash';
 
 @Component({
   templateUrl: './account.statement.page.html',
@@ -15,8 +16,9 @@ import { AccountService } from '../api/account.service';
 export class AccountStatementPageComponent implements OnInit {
   accounts: any = {};
   statements: any[];
-  records: any[];    // processed
-  year: string = '2017';
+  records: any[];
+  maps: any[];
+  year: string;
   month: string;
 
   constructor(private ds: AccountService) {}
@@ -27,29 +29,38 @@ export class AccountStatementPageComponent implements OnInit {
         res.map(item => {
           this.accounts[item.$key] = item;
         });
-        this.load();
+        this.loadStatement();
       }
     );
-    this.month = '9';
+    this.year = '2017';
+    this.month = '8';
   }
 
-  // Load all statements for selected date and
-  // fill statement data to accounts as records
-  load() {
+  // Load statements for selected date
+  loadStatement() {
     let id = this.year + '/' + this.month;
     this.ds.statements(id).subscribe(res => {
       this.statements = res;
-      this.records = this.prepare(this.accounts, this.statements);
-      console.log(this.records);
+      this.records = this.prepareRecords(this.accounts, this.statements);
+      this.maps = _.map(_.groupBy(this.records, 'type'), (records, key) => {
+        return {
+          type: key,
+          records: records
+        }
+      });
+      console.log(this.maps);
     });
   }
 
-  prepare(accounts, statements) {
+  // Fill statements into accounts as records
+  prepareRecords(accounts, statements) {
     let records = Object.assign({}, accounts);
     Object.keys(records).forEach(account => {
+      let accountObj = accounts[account];
       records[account] = {
         account: account,
-        title: accounts[account].title,
+        title: accountObj.title,
+        type: accountObj.type,
         flow: 0.0, balance: 0.0
       };
     })

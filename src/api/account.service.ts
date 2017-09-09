@@ -29,7 +29,7 @@ export class AccountService {
   getAccount(id: String): Observable<any> {
     return this.get('accounts', id);
   }
-  statements(id: string): Observable<any[]> {
-    return this.list(id);
+  statements(id: String): Observable<any[]> {
+    return this.list('statements/' + id);
   }
 }

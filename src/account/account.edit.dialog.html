@@ -1,12 +1,13 @@
 <h1 md-dialog-title>{{ data.record.account | titlecase }}</h1>
 <div md-dialog-content>
-  <p>Gain</p>
-  <p>Balance</p>
   <md-form-field>
-    <input mdInput tabindex="1" [(ngModel)]="data">
+    <input mdInput tabindex="1" placeholder="Gain" [(ngModel)]="data.record.flow">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput placeholder="Balance" [(ngModel)]="data.record.balance">
   </md-form-field>
 </div>
 <div md-dialog-actions>
-  <button md-button [md-dialog-close]="data" tabindex="2">Ok</button>
+  <button md-button [md-dialog-close]="data.record" tabindex="2">Ok</button>
   <button md-button (click)="onNoClick()" tabindex="-1">Cancel</button>
 </div>

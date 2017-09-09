@@ -12,6 +12,7 @@ import { MdButtonModule } from '@angular/material';
 import { MdSidenavModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
 import { MdInputModule } from '@angular/material';
+import { MdExpansionModule } from '@angular/material';
 
 import { StSidebarComponent } from './sidebar.component';
 import { StNavbarComponent } from './navbar.component';
@@ -22,6 +23,7 @@ import { StNavbarComponent } from './navbar.component';
     MdButtonModule, MdSidenavModule,
     MdDialogModule,
     MdInputModule,
+    MdExpansionModule,
   ],
   declarations: [
     StSidebarComponent, StNavbarComponent
@@ -31,6 +33,7 @@ import { StNavbarComponent } from './navbar.component';
     MdButtonModule, MdSidenavModule,
     MdDialogModule,
     MdInputModule,
+    MdExpansionModule,
     StSidebarComponent, StNavbarComponent
   ]
 })

@@ -52,7 +52,7 @@
               <td>$ {{ item.flow | number:'.2' }}</td>
               <td>$ {{ item.balance | number: '.2' }}</td>
               <td class="text-right">
-                <a class="btn btn-link btn-round" data-title="View item" (click)="editRecord()"><i class="md md-perm-media"></i></a>
+                <a class="btn btn-link btn-round" data-title="Edit item" (click)="editRecord(item)"><i class="md md-perm-media"></i></a>
               </td>
             </tr>
           </tbody>

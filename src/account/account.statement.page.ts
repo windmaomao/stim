@@ -79,10 +79,11 @@ export class AccountStatementPageComponent implements OnInit {
   }
 
   // open dialog to edit account
-  editRecord() {
+  editRecord(record) {
+    console.log(record);
     let dialogRef = this.dialog.open(AccountEditDialogComponent, {
       width: '250px',
-      data: { name: 'Edit' }
+      data: { record: record }
     });
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);

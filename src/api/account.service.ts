@@ -29,12 +29,7 @@ export class AccountService {
   getAccount(id: String): Observable<any> {
     return this.get('accounts', id);
   }
-  statements(year: String, month?: String): Observable<any[]> {
-    let id = 'statements' + '/' + year;
-    if (!month) {
-      return this.list(id);
-    }
-    id = id + '/' + month;
+  statements(id: string): Observable<any[]> {
     return this.list(id);
   }
 }

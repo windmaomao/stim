@@ -16,6 +16,8 @@ export class AccountStatementPageComponent implements OnInit {
   accounts: any = {};
   statements: any[];
   records: any[];    // processed
+  year: string = '2017';
+  month: string;
 
   constructor(private ds: AccountService) {}
 
@@ -28,17 +30,18 @@ export class AccountStatementPageComponent implements OnInit {
         this.load();
       }
     );
+    this.month = '9';
   }
 
+  // Load all statements for selected date and
+  // fill statement data to accounts as records
   load() {
-    this.ds.statements('2015','4').subscribe(
-      res => {
-        this.statements = res;
-        console.log(res);
-        this.records = this.prepare(this.accounts, this.statements);
-        console.log(this.records);
-      }
-    );
+    let id = this.year + '/' + this.month;
+    this.ds.statements(id).subscribe(res => {
+      this.statements = res;
+      this.records = this.prepare(this.accounts, this.statements);
+      console.log(this.records);
+    });
   }
 
   prepare(accounts, statements) {

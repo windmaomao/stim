@@ -5,17 +5,19 @@
  * @author Fang Jin <windmaomao@gmail.com>
  */
 
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { AccountService } from '../api/account.service';
 import * as _ from 'lodash';
 import { MdDialog } from '@angular/material';
 import { AccountEditDialogComponent } from './account.edit.dialog';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/zip';
 
 @Component({
   templateUrl: './account.statement.page.html',
   // styleUrls: ['./cv.scss']
 })
-export class AccountStatementPageComponent implements OnInit {
+export class AccountStatementPageComponent implements OnInit, OnDestroy, AfterViewInit {
   types: any = {};
   accounts: any = {};
   statements: any[];
@@ -24,8 +26,9 @@ export class AccountStatementPageComponent implements OnInit {
   year: string;
   month: string;
   icons: any;
+  private sub: any;
 
-  constructor(private ds: AccountService, public dialog: MdDialog) {
+  constructor(private ds: AccountService, public dialog: MdDialog, private route: ActivatedRoute) {
     this.icons = {
       cash: 'md-attach-money',
       investment: 'md-trending-up',
@@ -35,19 +38,33 @@ export class AccountStatementPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    // get route parameters
+    this.sub = this.route.params.subscribe(params => {
+      this.year = params['year'];
+      this.month = params['month'];
+    });
+    // load types
     this.ds.types().subscribe(res => {
       res.map(item => {
         this.types[item.$key] = item;
       });
     });
+    // load accounts
     this.ds.accounts().subscribe(res => {
       res.map(item => {
         this.accounts[item.$key] = item;
       });
       this.loadStatement();
     });
-    this.year = '2017';
-    this.month = '8';
+    // this.year = '2017';
+    // this.month = '8';
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  ngAfterViewInit() {
   }
 
   // Load statements for selected date

@@ -11,6 +11,7 @@ import { AccountEditDialogComponent } from "./account.edit.dialog";
 
 export const AccountRoutes: Route[] = [
   { path: 'accounts', component: AccountStatementPageComponent },
+  { path: 'statements/:year/:month', component: AccountStatementPageComponent }
 ]
 
 export const AccountComponents = [

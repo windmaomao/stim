@@ -78,16 +78,29 @@ export class AccountStatementPageComponent implements OnInit {
     })
   }
 
-  // open dialog to edit account
+  // open dialog to edit record
   editRecord(record) {
-    console.log(record);
     let dialogRef = this.dialog.open(AccountEditDialogComponent, {
       width: '250px',
       data: { record: record }
     });
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
+      if (res) {
+        this.saveRecord(res);
+      }
     })
+  }
+
+  // save record
+  saveRecord(record) {
+    let id = this.year + '/' + this.month;
+    let key = id + '/' + record.account;
+    let item = {
+      flow: parseFloat(record.flow),
+      balance: parseFloat(record.balance)
+    };
+    this.ds.updateStatement(key, item);
   }
 
 }

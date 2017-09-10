@@ -16,24 +16,36 @@ import { AccountEditDialogComponent } from './account.edit.dialog';
   // styleUrls: ['./cv.scss']
 })
 export class AccountStatementPageComponent implements OnInit {
+  types: any = {};
   accounts: any = {};
   statements: any[];
   records: any[];
   maps: any[];
   year: string;
   month: string;
+  icons: any;
 
-  constructor(private ds: AccountService, public dialog: MdDialog) {}
+  constructor(private ds: AccountService, public dialog: MdDialog) {
+    this.icons = {
+      cash: 'md-attach-money',
+      investment: 'md-trending-up',
+      credit: 'md-credit-card',
+      hard: 'md-lock',
+    }
+  }
 
   ngOnInit() {
-    this.ds.accounts().subscribe(
-      res => {
-        res.map(item => {
-          this.accounts[item.$key] = item;
-        });
-        this.loadStatement();
-      }
-    );
+    this.ds.types().subscribe(res => {
+      res.map(item => {
+        this.types[item.$key] = item;
+      });
+    });
+    this.ds.accounts().subscribe(res => {
+      res.map(item => {
+        this.accounts[item.$key] = item;
+      });
+      this.loadStatement();
+    });
     this.year = '2017';
     this.month = '8';
   }

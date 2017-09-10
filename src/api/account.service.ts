@@ -28,6 +28,9 @@ export class AccountService {
     return items.update(id, data);
   }
 
+  types(): Observable<any[]> {
+    return this.list('types');
+  }
   accounts(): Observable<any[]> {
     return this.list('accounts');
   }

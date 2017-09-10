@@ -31,7 +31,11 @@
 
       <div class="table-responsive well no-padding white no-margin" *ngFor="let entry of maps">
 
-        <h3 class="table-title">{{ entry.type | titlecase }} ({{ entry.records.length }})</h3>
+        <h3 class="table-title">
+          <i class="md {{ icons[entry.type] }}"></i>
+          {{ types[entry.type]?.title | titlecase }} ({{ entry.records.length }})
+          <small>{{ types[entry.type]?.description }}</small>
+        </h3>
 
         <table class="table table-full m-b-60">
           <thead>

@@ -66,6 +66,7 @@ export class AccountStatementPageComponent implements OnInit {
         account: account,
         title: accountObj.title,
         type: accountObj.type,
+        number: accountObj.number,
         flow: 0.0, balance: 0.0
       };
     })

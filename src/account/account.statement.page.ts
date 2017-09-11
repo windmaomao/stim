@@ -5,19 +5,20 @@
  * @author Fang Jin <windmaomao@gmail.com>
  */
 
-import { Component, ViewChild, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { AccountService } from '../api/account.service';
 import * as _ from 'lodash';
 import { MdDialog } from '@angular/material';
 import { AccountEditDialogComponent } from './account.edit.dialog';
 import { ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/zip';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/zip';
 
 @Component({
   templateUrl: './account.statement.page.html',
   // styleUrls: ['./cv.scss']
 })
-export class AccountStatementPageComponent implements OnInit, OnDestroy, AfterViewInit {
+export class AccountStatementPageComponent implements OnInit, OnDestroy {
   types: any = {};
   accounts: any = {};
   statements: any[];
@@ -38,33 +39,27 @@ export class AccountStatementPageComponent implements OnInit, OnDestroy, AfterVi
   }
 
   ngOnInit() {
-    // get route parameters
     this.sub = this.route.params.subscribe(params => {
       this.year = params['year'];
       this.month = params['month'];
-    });
-    // load types
-    this.ds.types().subscribe(res => {
-      res.map(item => {
-        this.types[item.$key] = item;
+
+      Observable.zip(
+        this.ds.types(),
+        this.ds.accounts()
+      ).subscribe(([types, accounts]) => {
+        types.map(item => {
+          this.types[item.$key] = item;
+        });
+        accounts.map(item => {
+          this.accounts[item.$key] = item;
+        });
+        this.loadStatement();
       });
     });
-    // load accounts
-    this.ds.accounts().subscribe(res => {
-      res.map(item => {
-        this.accounts[item.$key] = item;
-      });
-      this.loadStatement();
-    });
-    // this.year = '2017';
-    // this.month = '8';
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  ngAfterViewInit() {
   }
 
   // Load statements for selected date

@@ -45,40 +45,24 @@ export class AccountStatementPageComponent implements OnInit, OnDestroy {
 
       Observable.zip(
         this.ds.types(),
-        this.ds.accounts()
-      ).subscribe(([types, accounts]) => {
+        this.ds.accounts(),
+        this.ds.statements(this.year + '/' + this.month)
+      ).subscribe(([types, accounts, statements]) => {
         types.map(item => {
           this.types[item.$key] = item;
         });
         accounts.map(item => {
           this.accounts[item.$key] = item;
         });
-        this.loadStatement();
+        this.statements = statements;
+        this.records = this.prepareRecords(this.accounts, this.statements);
+        this.maps = this.mapRecords(this.filterRecords(this.records));
       });
     });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  // Load statements for selected date
-  loadStatement() {
-    let id = this.year + '/' + this.month;
-    this.ds.statements(id).subscribe(res => {
-      this.statements = res;
-      this.records = this.prepareRecords(this.accounts, this.statements);
-      // sort by name
-      this.records = _.orderBy(this.records, ['title']);
-      // group by type
-      this.maps = _.map(_.groupBy(this.records, 'type'), (records, key) => {
-        return {
-          type: key,
-          records: records
-        }
-      });
-      console.log(this.maps);
-    });
   }
 
   // Fill statements into accounts as records
@@ -101,6 +85,23 @@ export class AccountStatementPageComponent implements OnInit, OnDestroy {
     return Object.keys(records).map(account => {
       return records[account];
     })
+  }
+
+  // Filter records
+  filterRecords(records) {
+    // sort by name
+    return _.orderBy(records, ['title']);
+  }
+
+  // Map records
+  mapRecords(records) {
+    // group by type
+    return _.map(_.groupBy(records, 'type'), (items, key) => {
+      return {
+        type: key,
+        records: items
+      }
+    });
   }
 
   // open dialog to edit record

@@ -12,6 +12,7 @@ import { MdDialog } from '@angular/material';
 import { AccountEditDialogComponent } from './account.edit.dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/observable/zip';
 
 @Component({
@@ -28,6 +29,8 @@ export class AccountStatementPageComponent implements OnInit, OnDestroy {
   month: string;
   icons: any;
   private sub: any;
+  search: string;
+  filter$: Subject<any> = new Subject();
 
   constructor(private ds: AccountService, public dialog: MdDialog, private route: ActivatedRoute) {
     this.icons = {
@@ -39,6 +42,7 @@ export class AccountStatementPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // initial route loading
     this.sub = this.route.params.subscribe(params => {
       this.year = params['year'];
       this.month = params['month'];
@@ -58,6 +62,18 @@ export class AccountStatementPageComponent implements OnInit, OnDestroy {
         this.records = this.prepareRecords(this.accounts, this.statements);
         this.maps = this.mapRecords(this.filterRecords(this.records));
       });
+    });
+    // search
+    this.filter$.subscribe(str => {
+      let records = [];
+      if (str) {
+        records = _.filter(this.records, record => {
+          return record.title.indexOf(str) > -1;
+        });
+      } else {
+        records = _.clone(this.records);
+      }
+      this.maps = this.mapRecords(records);
     });
   }
 

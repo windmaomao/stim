@@ -23,7 +23,9 @@
           <i class="md md-camera"></i>
           Account Statement - 2017 Aug
         </h1>
-        <p class="lead"></p>
+        <p class="lead">
+          Search: <input type="text" (input)="filter$.next($event.target.value)" />
+        </p>
       </div>
     </section>
 

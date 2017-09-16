@@ -12,6 +12,7 @@ import * as _ from 'lodash';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/zip';
 import 'rxjs/add/operator/distinctUntilChanged';
 // import 'rxjs/add/observable/of';
@@ -34,6 +35,7 @@ export class CvItemsPageComponent implements OnInit {
   private _sectionsAll: any[];
   entries: any[];
   metas: any;
+  busy$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(private ds: CvService) {
     this.selected = this.item();
@@ -65,11 +67,13 @@ export class CvItemsPageComponent implements OnInit {
 
     this.filter$.distinctUntilChanged()
       .subscribe(filter => {
+        this.busy$.next(true);
         if (!filter) {
           this.entries = _.clone(this._entriesAll);
         } else {
           this.entries = _.filter(this._entriesAll, filter);
         }
+        this.busy$.next(false);
       })
     ;
   }

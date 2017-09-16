@@ -13,6 +13,7 @@ import { MdSidenavModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
 import { MdInputModule } from '@angular/material';
 import { MdExpansionModule } from '@angular/material';
+import { MdProgressSpinnerModule } from '@angular/material';
 
 import { StSidebarComponent } from './sidebar.component';
 import { StNavbarComponent } from './navbar.component';
@@ -24,6 +25,7 @@ import { StNavbarComponent } from './navbar.component';
     MdDialogModule,
     MdInputModule,
     MdExpansionModule,
+    MdProgressSpinnerModule,
   ],
   declarations: [
     StSidebarComponent, StNavbarComponent
@@ -34,6 +36,7 @@ import { StNavbarComponent } from './navbar.component';
     MdDialogModule,
     MdInputModule,
     MdExpansionModule,
+    MdProgressSpinnerModule,
     StSidebarComponent, StNavbarComponent
   ]
 })

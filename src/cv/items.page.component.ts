@@ -6,18 +6,18 @@
  */
 
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { CvService } from '../api/cv.service';
 import { MdSidenav } from '@angular/material';
+import * as _ from 'lodash';
 
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/observable/zip';
 import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
-
-import { DataService } from '../api/data.service';
+// import 'rxjs/add/observable/of';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/debounceTime';
+// import 'rxjs/add/operator/switchMap';
 
 @Component({
   templateUrl: './items.page.component.html',
@@ -28,13 +28,14 @@ export class CvItemsPageComponent implements OnInit {
   private icons: any;
   selected: any = null;
   @ViewChild('sidenav') sidenav: MdSidenav;
-  private filter$: Subject<any>;
+
+  private filter$: Subject<any> = new Subject();
   private _entriesAll: any[];
   private _sectionsAll: any[];
   entries: any[];
   metas: any;
 
-  constructor(private db: AngularFireDatabase, private ds: DataService) {
+  constructor(private ds: CvService) {
     this.selected = this.item();
     this.icons = {
       project: 'md-web blue',
@@ -51,31 +52,24 @@ export class CvItemsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filter$ = new Subject();
-    // this.items$ = this.entriesSource(this.filter$);
-    this.items$ = this.entriesBy(this.filter$);
-    this.items$.subscribe(res => {
-      this.entries = res;
-      // console.log('Items', res);
+    Observable.zip(
+      this.ds.entries(),
+      this.ds.types(),
+      this.ds.metas()
+    ).subscribe(([entries, types, metas]) => {
+      this.metas = metas;
+      this._sectionsAll = types;
+      this._entriesAll = entries;
+      this.filter$.next('');
     });
-    let api = '/QPLOT/cv';
-    // get all entires and store in entriesAll
-    this.db.list(api + '/entries')
-      .subscribe(res => {
-        this._entriesAll = res;
-        this.filter$.next('all');
-      })
-    ;
-    this.db.list(api + '/types')
-      .subscribe(res => {
-        this._sectionsAll = res;
-        // console.log('Sections', res);
-      })
-    ;
-    this.db.object(api + '/metas')
-      .subscribe(res => {
-        // console.log(res);
-        this.metas = res;
+
+    this.filter$.distinctUntilChanged()
+      .subscribe(filter => {
+        if (!filter) {
+          this.entries = _.clone(this._entriesAll);
+        } else {
+          this.entries = _.filter(this._entriesAll, filter);
+        }
       })
     ;
   }
@@ -90,36 +84,10 @@ export class CvItemsPageComponent implements OnInit {
   //   });
   // }
 
-  // return entries list obserable based on filter
-  entriesBy(filters: Observable<any>) {
-    return filters.distinctUntilChanged()
-      .switchMap(filter => {
-        if (filter === 'all') {
-          return Observable.of(this._entriesAll.slice());
-        }
-        let entries = this._entriesAll.filter(item => {
-          return item.section === filter;
-        });
-        return Observable.of(entries);
-      })
-    ;
-  }
-
   // set filter
   filterBy(section: string) {
-    this.filter$.next(section);
+    this.filter$.next({ section: section });
   }
-
-  // search(terms: Observable<string>) {
-  //   return terms.debounceTime(400)
-  //     .distinctUntilChanged()
-  //     .switchMap(terms => this.searchEntries(term))
-  //   ;
-  // }
-  //
-  // searchEntries(term) {
-  //
-  // }
 
   icon(type) {
     if (type in this.icons) {
@@ -165,20 +133,20 @@ export class CvItemsPageComponent implements OnInit {
   //   this.selected = this.item();
   //   this.editor(true);
   // }
-  //
-  // // save an item
-  // save() {
-  //   if (this.selected) {
-  //     let item = Object.assign({}, this.selected);
-  //     if ('$key' in item) {
-  //       delete item['$key'];
-  //       this.items.update(this.selected.$key, item);
-  //     } else {
-  //       this.items.push(item);
-  //     }
-  //   }
-  //   this.editor(false);
-  // }
+
+  // save an item
+  save() {
+    console.log(this.selected);
+    if (this.selected) {
+      let item = Object.assign({}, this.selected);
+      if ('$key' in item) {
+        let key = item['$key'];
+        delete item['$key'];
+        this.ds.updateEntry(key, item);
+      }
+    }
+    this.editor(false);
+  }
   //
   // // delete an item
   // del(item: any) {

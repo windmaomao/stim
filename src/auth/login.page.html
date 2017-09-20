@@ -14,15 +14,21 @@
         <div class="card-title strong pink-text">Login</div>
         <p class="card-title-desc"> Welcome to Site and Tower! </p>
       </div>
-      <form class="form-floating">
-        <div class="form-group">
+      <form class="form-floating" (keyup.enter)="login()">
+        <md-form-field  style="width: 100%;">
+          <input mdInput placeholder="Email" [(ngModel)]="email" name="email">
+        </md-form-field>
+        <md-form-field  style="width: 100%;">
+          <input mdInput type="password" placeholder="Password" [(ngModel)]="password" name="password">
+        </md-form-field>
+        <!-- <div class="form-group">
           <label for="inputEmail" class="control-label">Email</label>
           <input type="text" class="form-control" [(ngModel)]="email" name="email" />
         </div>
         <div class="form-group">
           <label for="inputPassword" class="control-label">Password</label>
           <input type="password" class="form-control" [(ngModel)]="password" name="password" />
-        </div>
+        </div> -->
         <div class="form-group">
           <div class="checkbox">
             <label>
@@ -39,6 +45,7 @@
         {{ error }}
       </span>
       <div class="pull-right">
+        <button type="button" class="btn btn-link black-text" (click)="auth.navigate('signup')">New Account?</button>
         <!-- <button type="button" class="btn btn-link black-text">Forgot password</button> -->
         <button type="button" class="btn btn-link black-text" (click)="login()">Login</button>
       </div>

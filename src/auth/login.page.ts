@@ -15,7 +15,7 @@ export class AuthLoginPageComponent {
   email: string;
   password: string;
   error: string;
-  constructor(private auth: AuthService) {}
+  constructor(public auth: AuthService) {}
 
   login() {
     this.auth.authenticate(this.email, this.password).catch(err => {

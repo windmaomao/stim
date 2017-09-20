@@ -1,0 +1,463 @@
+<div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
+  <section>
+    <div class="page-header">
+      <div class="actions">
+        <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-info-outline"></span></button>
+        <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-search"></span></button>
+      </div>
+      <h1>      <i class="md md-camera"></i>      Crud application    </h1>
+      <p class="lead"> In most applications you need basic table listings and editing capabilities. With this app you can create simple admin functionality based on a json web service. <u>Exclusively on Site and Tower</u>. </p>
+      <ul>
+        <li class="text" *ngFor="let item of items | async">{{ item.$value }}</li>
+      </ul>
+    </div>
+  </section>
+  <div>
+    <div class="table-responsive well no-padding white no-margin">
+      <h3 class="table-title">90 Items available</h3>
+      <table class="table table-full m-b-60" id="table-area-1" fsm-big-data="data of data take 30">
+        <thead>
+          <tr fsm-sticky-header="" scroll-body="'#table-area-1'" scroll-stop="64">
+            <th>
+              <input type="checkbox" class="relative">
+            </th>
+            <th>Icon</th>
+            <th fsm-sort="firstname" style="cursor: pointer; ">Name&nbsp;<i class="md md-sort"></i></th>
+            <th fsm-sort="lastname" style="cursor: pointer; ">Last&nbsp;<i class="md md-sort"></i></th>
+            <th>Summary</th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-more-vert purple darken-1 icon-color"></i></td>
+            <td>
+              <a [routerLink]="['/item']">Kade</a>
+            </td>
+            <td><a [routerLink]="['/item']">McClure</a></td>
+            <td><a [routerLink]="['/item']">Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor.</a></td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-3d-rotation lime darken-1 icon-color"></i></td>
+            <td>River</td>
+            <td>Quitzon</td>
+            <td>Augue neque, gravida in fermentum et, sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-warning deep-orange lighten-1 icon-color"></i></td>
+            <td>Joshuah</td>
+            <td>Gorczany</td>
+            <td>At tellus at urna condimentum.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-filter-b-and-w teal darken-2 icon-color"></i></td>
+            <td>Edison</td>
+            <td>Schinner</td>
+            <td>Cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-network-cell red darken-1 icon-color"></i></td>
+            <td>Herminia</td>
+            <td>Beahan</td>
+            <td>Egestas purus viverra accumsan in nisl nisi, scelerisque eu ultrices vitae, auctor eu augue ut lectus.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-loyalty light-green lighten-2 icon-color"></i></td>
+            <td>Jordane</td>
+            <td>Harber</td>
+            <td>Lacus, sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-stay-primary-landscape teal lighten-2 icon-color"></i></td>
+            <td>Vinnie</td>
+            <td>Stiedemann</td>
+            <td>Nunc congue nisi, vitae suscipit tellus.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-expand-less orange lighten-1 icon-color"></i></td>
+            <td>Lizeth</td>
+            <td>Schinner</td>
+            <td>Platea dictumst quisque sagittis, purus sit amet volutpat consequat, mauris nunc congue nisi, vitae suscipit tellus mauris a diam maecenas.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-content-paste deep-orange darken-2 icon-color"></i></td>
+            <td>Alvis</td>
+            <td>Fadel</td>
+            <td>Augue ut lectus arcu, bibendum at varius vel, pharetra vel turpis nunc eget lorem dolor, sed viverra ipsum nunc aliquet.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-local-atm blue lighten-1 icon-color"></i></td>
+            <td>Sarai</td>
+            <td>Lindgren</td>
+            <td>Fusce ut placerat orci nulla pellentesque dignissim enim, sit.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-headset light-green lighten-1 icon-color"></i></td>
+            <td>Kara</td>
+            <td>Glover</td>
+            <td>Nisl tincidunt eget nullam non nisi est, sit amet facilisis magna etiam tempor, orci eu lobortis.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-party-mode yellow darken-1 icon-color"></i></td>
+            <td>Nayeli</td>
+            <td>Mueller</td>
+            <td>Ultricies integer quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-event-busy yellow lighten-2 icon-color"></i></td>
+            <td>Domenica</td>
+            <td>Walsh</td>
+            <td>Nisi, scelerisque eu ultrices vitae, auctor eu augue.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-signal-cellular-connected-no-internet-3-bar light-blue darken-2 icon-color"></i></td>
+            <td>Earline</td>
+            <td>Lehner</td>
+            <td>Duis ultricies lacus sed turpis tincidunt.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-switch-video amber lighten-1 icon-color"></i></td>
+            <td>Anna</td>
+            <td>Willms</td>
+            <td>Egestas diam in arcu cursus euismod quis viverra nibh cras pulvinar mattis.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-album light-blue darken-1 icon-color"></i></td>
+            <td>Beverly</td>
+            <td>Aufderhar</td>
+            <td>In cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-local-laundry-service light-green lighten-2 icon-color"></i></td>
+            <td>Abigayle</td>
+            <td>Watsica</td>
+            <td>Quisque egestas diam in arcu cursus euismod.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-battery-full blue darken-2 icon-color"></i></td>
+            <td>Alverta</td>
+            <td>Kozey</td>
+            <td>Condimentum mattis pellentesque id nibh tortor, id aliquet lectus proin nibh nisl, condimentum id venenatis a, condimentum.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-signal-wifi-off indigo lighten-1 icon-color"></i></td>
+            <td>Devante</td>
+            <td>Wunsch</td>
+            <td>Facilisis magna etiam tempor, orci eu lobortis elementum, nibh tellus molestie nunc, non blandit.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-filter-center-focus light-blue darken-2 icon-color"></i></td>
+            <td>Christiana</td>
+            <td>Johnston</td>
+            <td>Nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-location-off blue lighten-2 icon-color"></i></td>
+            <td>Antonette</td>
+            <td>Cartwright</td>
+            <td>Id eu nisl nunc mi ipsum, faucibus vitae aliquet nec, ullamcorper sit amet risus nullam eget felis eget.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-quick-contacts-dialer light-blue lighten-2 icon-color"></i></td>
+            <td>Michael</td>
+            <td>Conroy</td>
+            <td>Enim, sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in aliquam sem fringilla ut morbi.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-unfold-less amber darken-2 icon-color"></i></td>
+            <td>Fern</td>
+            <td>Becker</td>
+            <td>Ultrices mi tempus imperdiet nulla malesuada.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-videocam-off orange darken-2 icon-color"></i></td>
+            <td>Raquel</td>
+            <td>Hand</td>
+            <td>Nisl purus, in mollis nunc sed id semper risus.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-slideshow teal lighten-1 icon-color"></i></td>
+            <td>Micah</td>
+            <td>Franecki</td>
+            <td>Ut lectus arcu, bibendum at varius vel, pharetra vel turpis nunc eget lorem dolor, sed viverra.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-border-style lime lighten-1 icon-color"></i></td>
+            <td>Reyes</td>
+            <td>Orn</td>
+            <td>Ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-looks-4 green lighten-2 icon-color"></i></td>
+            <td>Vada</td>
+            <td>Anderson</td>
+            <td>Nulla facilisi cras fermentum, odio eu feugiat pretium, nibh ipsum consequat nisl, vel pretium lectus quam id.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-sd-card deep-orange darken-2 icon-color"></i></td>
+            <td>Murl</td>
+            <td>Gaylord</td>
+            <td>Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue eget arcu dictum varius duis at consectetur lorem donec.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-notifications amber darken-2 icon-color"></i></td>
+            <td>Vella</td>
+            <td>Deckow</td>
+            <td>Libero volutpat sed cras ornare arcu dui vivamus arcu felis, bibendum ut tristique et, egestas quis ipsum.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" class="relative">
+            </td>
+            <td ng-bind-html="item.icon" class="f20"><i class="md md-filter-tilt-shift deep-orange lighten-1 icon-color"></i></td>
+            <td>River</td>
+            <td>Medhurst</td>
+            <td>Tempus, urna et pharetra pharetra, massa massa ultricies mi, quis hendrerit dolor magna eget est lorem.</td>
+            <td class="text-right">
+              <button type="button" class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="View item"><i class="md md-search"></i></button>
+              <button type="button" class="btn btn-link btn-round" data-title="Delete item"><i class="md md-delete"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer-buttons">
+      <div class="btn btn-primary btn-round btn-lg m-r-10 btn-footer" data-title="Remove 0 item(s)" data-toggle="tooltip"><i class="md md-delete"></i></div>
+      <div class="btn btn-default btn-round btn-lg m-r-10 btn-footer" scroll-to="top" data-title="Scroll to top" data-toggle="tooltip"><i class="md md-arrow-drop-up"></i></div>
+      <div class="btn btn-primary btn-round btn-lg" data-title="New Item" data-toggle="tooltip"><i class="md md-add"></i></div>
+    </div>
+  </div>
+</div>

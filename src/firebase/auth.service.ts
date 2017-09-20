@@ -27,8 +27,8 @@ export class AuthService {
   }
 
   navigate(place: string) {
-    if (place === 'login') {
-      return this.router.navigate(['login']);
+    if (place) {
+      return this.router.navigate([place]);
     }
     this.router.navigate(['/']);
   }

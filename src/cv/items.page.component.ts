@@ -32,7 +32,7 @@ export class CvItemsPageComponent implements OnInit {
 
   private filter$: Subject<any> = new Subject();
   private _entriesAll: any[];
-  private _sectionsAll: any[];
+  _sectionsAll: any[];
   entries: any[];
   metas: any;
   busy$: BehaviorSubject<boolean> = new BehaviorSubject(true);
@@ -132,11 +132,11 @@ export class CvItemsPageComponent implements OnInit {
     this.editor(true);
   }
 
-  // // start to add an new item
-  // add() {
-  //   this.selected = this.item();
-  //   this.editor(true);
-  // }
+  // start to add an new item
+  add() {
+    this.selected = this.item();
+    this.editor(true);
+  }
 
   // save an item
   save() {

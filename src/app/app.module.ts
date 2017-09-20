@@ -9,16 +9,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { StLayoutModule } from '../layout/layout.module';
+import { FirebaseModule } from '../firebase/firebase.module';
+
+import { AuthModule } from '../auth/auth.module';
 import { SampleModule } from '../sample/sample.module';
 import { DiagramModule } from '../diagram/diagram.module';
 import { CvModule } from '../cv/cv.module';
 import { AccountModule } from '../account/account.module';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from '../environments/environment';
-
+import { StLayoutModule } from '../layout/layout.module';
 import { AppComponent } from './app.component';
 import { appComponents, appRoutes } from './app.routes';
 
@@ -26,17 +25,17 @@ import { appComponents, appRoutes } from './app.routes';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    StLayoutModule,
-    SampleModule,
-    DiagramModule,
-    CvModule,
-    AccountModule,
+    FirebaseModule,                 // backend
+    StLayoutModule,                 // layout
+    SampleModule,                   // public pages
+    AuthModule,                     // auth pages
+    DiagramModule,                  // diagram app
+    CvModule,                       // cv app
+    AccountModule,                  // account app
     RouterModule.forRoot(appRoutes, {
       useHash: true
       // enableTracing: true
     }),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
   ],
   declarations: [
     appComponents

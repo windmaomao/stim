@@ -7,10 +7,22 @@
       <div class="foot4"></div>
     </div> Site & Tower </div>
   <div class="user-logged-in">
-    <div class="content">
-      <div class="user-name">John <span class="text-muted f9">admin</span></div>
-      <div class="user-email">john.doe@gmail.com</div>
-      <div class="user-actions"> <a class="m-r-5" href="#">settings</a> <a href="#">logout</a> </div>
+    <div class="content" *ngIf="auth.authenticated">
+      <div class="user-name">
+        {{ auth.user?.displayName }}
+        <!-- <span class="text-muted f9">admin</span> -->
+      </div>
+      <!-- photoURL -->
+      <div class="user-email">{{ auth.user?.email }}</div>
+      <!-- <div class="user-actions"> <a class="m-r-5" href="#">settings</a> <a href="#">logout</a> </div> -->
+      <div class="user-actions">
+        <a href="javascript:;" (click)="auth.logout()">logout</a>
+      </div>
+    </div>
+    <div class="content" *ngIf="!auth.authenticated">
+      <div class="user-actions">
+        <a href="javascript:;" class="m-r-5" [routerLink]="['/login']" title="Login">login</a>
+      </div>
     </div>
   </div>
   <ul class="menu-links">
@@ -19,17 +31,11 @@
         <i class="md md-blur-on"></i>&nbsp;<span>Dashboard</span>
       </a>
     </li>
-    <li>
+    <li *ngIf="false">
       <a href="javascript:;" data-toggle="collapse" data-target="#Works" aria-expanded="false" aria-controls="APPS" class="collapsible-header waves-effect active" style="">
         <i class="md md-camera"></i>&nbsp;My work
       </a>
       <ul class="collapse in" style="" id="Works">
-        <li name="Digrams">
-          <a href="#/diagrams">
-            <span class="pull-right badge theme-primary-bg z-depth-0">2</span>
-            <span>Diagrams</span>
-          </a>
-        </li>
         <li name="CVs">
           <a href="#/cvs">
             <span class="pull-right badge theme-primary-bg z-depth-0">40</span>
@@ -44,11 +50,17 @@
         </li>
       </ul>
     </li>
-    <li>
+    <li *ngIf="auth.authenticated">
       <a href="javascript:;" data-toggle="collapse" data-target="#Samples" aria-expanded="false" aria-controls="APPS" class="collapsible-header waves-effect active" style="">
-        <i class="md md-camera"></i>&nbsp;Samples
+        <i class="md md-camera"></i>&nbsp;Diagram
       </a>
       <ul class="collapse in" style="" id="Samples">
+        <li name="Digrams">
+          <a href="#/diagrams">
+            <span class="pull-right badge theme-primary-bg z-depth-0">2</span>
+            <span>Diagrams</span>
+          </a>
+        </li>
         <li name="Diagram">
           <a href="#/diagram">
             <span>Diagram Basic</span>

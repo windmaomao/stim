@@ -5,6 +5,13 @@
  * @author Fang Jin <fang-a.jin@db.com>
  */
 
+main.page-full {
+  padding-left: 0;
+  .center {
+    margin-top: 40px;
+  }
+}
+
 aside.sidebar {
   width: 260px;
   left: -270px;

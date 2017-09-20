@@ -5,12 +5,15 @@
  * @author Fang Jin <windmaomao@gmail.com>
  */
 
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  // styleUrls: ['./app.component.css']
+  template: `
+    <st-body>
+      <router-outlet></router-outlet>
+    </st-body>
+  `,
 })
 export class AppComponent {
   title = 'app';

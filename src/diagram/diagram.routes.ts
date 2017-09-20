@@ -8,9 +8,10 @@
 import { Route } from "@angular/router";
 import { DiagramListPageComponent } from "./list.page.component";
 import { DiagramDetailPageComponent } from "./detail.page.component";
+import { GuardService } from "../firebase/guard.service";
 
 export const diagramRoutes: Route[] = [
-  { path: 'diagrams', component: DiagramListPageComponent },
+  { path: 'diagrams', component: DiagramListPageComponent, canActivate: [GuardService] },
   { path: 'diagram/:id', component: DiagramDetailPageComponent },
 ]
 

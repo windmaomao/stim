@@ -10,6 +10,7 @@ import { DataService } from './data.service';
 import { DiagramService } from './diagram.service';
 import { CvService } from './cv.service';
 import { AccountService } from './account.service';
+import { TradeService } from './trade.service';
 
 @NgModule({
   imports: [],
@@ -19,6 +20,7 @@ import { AccountService } from './account.service';
     DiagramService,
     CvService,
     AccountService,
+    TradeService,
   ],
   exports: []
 })

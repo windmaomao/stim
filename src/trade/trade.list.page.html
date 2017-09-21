@@ -1,0 +1,60 @@
+<st-sidebar></st-sidebar>
+
+<div class="main-container">
+  <st-navbar></st-navbar>
+
+  <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
+    <section>
+      <div class="page-header">
+        <div class="actions">
+          <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-info-outline"></span></button>
+          <button type="button" class="btn btn-link btn-round-sm theme-secondary-text"><span class="md md-search"></span></button>
+        </div>
+        <h1>
+          <i class="md md-camera"></i>
+          Trades
+        </h1>
+        <p class="lead"></p>
+      </div>
+    </section>
+
+    <div *ngIf="trades">
+
+      <div class="table-responsive well no-padding white no-margin">
+
+        <h3 class="table-title">
+          Transcations ({{ trades.length }})
+          <small></small>
+        </h3>
+
+        <table class="table table-full m-b-60">
+          <thead>
+            <tr>
+              <th width="100">Icon</th>
+              <th>Symbol<i class="md md-sort"></i></th>
+              <th>Entry<i class="md md-sort"></i></th>
+              <th>Quantity<i class="md md-sort"></i></th>
+              <th>Type<i class="md md-sort"></i></th>
+              <th class="text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of trades">
+              <td class="f20">
+                <i class="md darken-1 icon-color" [ngClass]="icons[item.type]"></i>
+              </td>
+              <td>{{ item.symbol | uppercase }}</td>
+              <td>$ {{ item.entry | number:'.2' }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.type }}</td>
+              <td class="text-right">
+                <a class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

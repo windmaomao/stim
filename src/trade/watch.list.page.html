@@ -40,11 +40,6 @@
             <i class="md darken-1 icon-color" [ngClass]="icons[row.type]"></i>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="SECTOR" [width]="100">
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            {{ value | titlecase }}
-          </ng-template>
-        </ngx-datatable-column>
         <ngx-datatable-column name="SYMBOL"></ngx-datatable-column>
         <ngx-datatable-column name="PROFIT" [width]="100">
           <ng-template let-value="value" ngx-datatable-cell-template>
@@ -54,6 +49,16 @@
         <ngx-datatable-column name="RISK" [width]="100">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value | number:'.2' }}%
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="SCORE" [width]="100">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value | number:'.1' }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="SECTOR" [width]="100">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value | titlecase }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="CREATED" [width]="100" prop="date"></ngx-datatable-column>

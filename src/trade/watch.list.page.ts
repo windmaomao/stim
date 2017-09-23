@@ -36,7 +36,11 @@ export class WatchListPageComponent implements OnInit {
     Observable.zip(
       this.ds.watches(),
     ).subscribe(([watches]) => {
+      watches.forEach(item => {
+        item['score'] = item.profit / item.risk;
+      });
       this.watches = watches;
+      console.log(this.watches);
     });
   }
 }

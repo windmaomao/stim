@@ -6,15 +6,15 @@
  */
 
 import { Route } from "@angular/router";
-import { CvItemsPageComponent } from "./items.page.component";
-import { CvDetailPageComponent } from "./detail.page.component";
+import { CvItemsPageComponent } from "./items.page";
+import { CvDetailPageComponent } from "./detail.page";
 
-export const cvRoutes: Route[] = [
+export const CvRoutes: Route[] = [
   { path: 'cvs', component: CvItemsPageComponent },
   { path: 'cv/:id', component: CvDetailPageComponent },
 ]
 
-export const cvComponents = [
+export const CvComponents = [
   CvItemsPageComponent,
   CvDetailPageComponent,
 ]

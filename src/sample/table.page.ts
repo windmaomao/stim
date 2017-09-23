@@ -8,25 +8,15 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: `
-    <st-sidebar></st-sidebar>
-    <div class="main-container">
-      <st-navbar></st-navbar>
-      <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
-        <h3 class="table-title">Test</h3>
-        <ng-table
-          [config]="config"
-          [rows]="rows" [columns]="columns"
-        ></ng-table>
-      </div>
-    </div>
-  `,
+  templateUrl: './table.page.html',
   // styleUrls: ['./diagram.component.scss']
 })
 export class SampleTablePageComponent {
   rows = [
-    { section: 'project', title: 'DRM Orders', createdAt: '2011-03-02' },
-    { section: 'company', title: 'RxAnte', createdAt: '2014-09-22' },
+    { icon: 'md-trending-up green', section: 'project', title: 'DRM Orders', createdAt: '2011-03-02' },
+    { icon: 'md-trending-down lime', section: 'company', title: 'RxAnte', createdAt: '2014-09-22' },
+    { icon: '3', section: 'company', title: 'Deutsche Bank', createdAt: '2014-09-22' },
+    { icon: '4', section: 'company', title: 'PeopleDesigns', createdAt: '2014-09-22' },
   ];
   columns = [
     { name: 'section', title: 'Section', filtering: { filterString: '', placeholder: 'Filter by section' } },
@@ -38,5 +28,7 @@ export class SampleTablePageComponent {
     sorting: { columns: this.columns }
   };
 
+  selectedSection: string;
+  sections = [ 'steak', 'pizza', 'tacos' ];
   constructor() {}
 }

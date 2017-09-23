@@ -1,0 +1,52 @@
+    <st-sidebar></st-sidebar>
+    <div class="main-container">
+      <st-navbar></st-navbar>
+      <div class="main-content" autoscroll="true" bs-affix-target="" init-ripples="" style="">
+        <!-- <md-toolbar class="transparent">
+          <span>Table</span>
+          <span style="flex: 1 1 auto"></span>
+          <md-icon class="example-icon">favorite</md-icon>
+        </md-toolbar> -->
+        <div class="table-responsive well no-padding white no-margin">
+          <div class="pull-right">
+            <md-select placeholder="Section" [(ngModel)]="selectedSection">
+              <md-option *ngFor="let section of sections" [value]="section">
+                {{ section | titlecase }}
+              </md-option>
+            </md-select>
+          </div>
+          <h3 class="table-title">Table</h3>
+          </div>
+        <ngx-datatable
+          class="material expandable"
+          [rows]="rows"
+          [sortType]="'multi'"
+          [columnMode]="'force'"
+          [headerHeight]="42"
+          [rowHeight]="50"
+        >
+          <ngx-datatable-column name="ICON" [width]="20">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <i class="md darken-1 icon-color" [ngClass]="value"></i>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="SECTION" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value | titlecase }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="TITLE"></ngx-datatable-column>
+          <ngx-datatable-column name="CREATED" [width]="100" prop="createdAt"></ngx-datatable-column>
+          <ngx-datatable-column name="ACTION" [width]="100">
+            <ng-template ngx-datatable-cell-template>
+              <a class="btn btn-link btn-lg" data-title="Edit item"><i class="md md-edit"></i></a>
+              <a class="btn btn-link btn-lg" data-title="View item"><i class="md md-perm-media"></i></a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+        <ng-table
+          [config]="config"
+          [rows]="rows" [columns]="columns"
+        ></ng-table>
+      </div>
+    </div>

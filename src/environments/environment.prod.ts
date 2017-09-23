@@ -7,5 +7,8 @@ export const environment = {
     projectId: "torrid-heat-2030",
     storageBucket: "torrid-heat-2030.appspot.com",
     messagingSenderId: "829342570880"
+  },
+  api: {
+    entry: "QPLOT"
   }
 };

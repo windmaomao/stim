@@ -9,7 +9,7 @@ import { Route } from "@angular/router";
 import { SampleDashboardPageComponent } from "./dashboard.page.component";
 import { SampleDiagramPageComponent } from "./diagram.page.component";
 import { SampleDiagram2PageComponent } from "./diagram2.page.component";
-import { SampleTablePageComponent } from "./table.page.component";
+import { SampleTablePageComponent } from "./table.page";
 
 export const sampleRoutes: Route[] = [
   { path: 'dashboard', component: SampleDashboardPageComponent },

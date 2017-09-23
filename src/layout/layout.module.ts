@@ -17,10 +17,18 @@ import { MdDialogModule } from '@angular/material';
 import { MdInputModule } from '@angular/material';
 import { MdExpansionModule } from '@angular/material';
 import { MdProgressSpinnerModule } from '@angular/material';
+import { MdSelectModule } from '@angular/material';
+import { MdToolbarModule } from '@angular/material';
+import { MdMenuModule } from '@angular/material';
 
 import { StBodyComponent } from './body.component';
 import { StSidebarComponent } from './sidebar.component';
 import { StNavbarComponent } from './navbar.component';
+import { StSpinnerComponent } from './spinner.component';
+
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
+import { SpinnerService } from './spinner.service';
 
 @NgModule({
   imports: [
@@ -32,10 +40,15 @@ import { StNavbarComponent } from './navbar.component';
     MdInputModule,
     MdExpansionModule,
     MdProgressSpinnerModule,
+    MdSelectModule,
+    MdToolbarModule,
+    MdMenuModule,
+    NgxDatatableModule,
   ],
   declarations: [
     StBodyComponent,
-    StSidebarComponent, StNavbarComponent
+    StSidebarComponent, StNavbarComponent,
+    StSpinnerComponent,
   ],
   exports: [
     CommonModule,
@@ -45,8 +58,16 @@ import { StNavbarComponent } from './navbar.component';
     MdInputModule,
     MdExpansionModule,
     MdProgressSpinnerModule,
+    MdSelectModule,
+    MdToolbarModule,
+    MdMenuModule,
+    NgxDatatableModule,
     StBodyComponent,
-    StSidebarComponent, StNavbarComponent
+    StSidebarComponent, StNavbarComponent,
+    StSpinnerComponent
+  ],
+  providers: [
+    SpinnerService
   ]
 })
 export class StLayoutModule {}

@@ -72,14 +72,55 @@
           </div>
           <h1>      <i class="md md-camera"></i>      All items    </h1>
           <p class="lead">{{ metas?.description }}</p>
-          {{ busy$ | async }}
         </div>
       </section>
 
       <div>
+        <div class="table-responsive well no-padding white no-margin">
+          <div class="pull-right">
+            <button md-icon-button [mdMenuTriggerFor]="menu">
+              <md-icon>...</md-icon>
+            </button>
+            <md-menu #menu="mdMenu">
+              <button md-menu-item (click)="filterBy('')">
+                <span>All</span>
+              </button>
+              <button md-menu-item *ngFor="let section of _sectionsAll"  (click)="filterBy(section.name)">
+                <span>{{ section.name | titlecase }}</span>
+              </button>
+            </md-menu>
+          </div>
+          <h3 class="table-title">{{ entries?.length }} Items available</h3>
+        </div>
+        <ngx-datatable
+          class="material expandable"
+          [rows]="entries"
+          [sortType]="'multi'"
+          [columnMode]="'force'"
+          [headerHeight]="42"
+          [rowHeight]="50"
+        >
+          <ngx-datatable-column name="SECTION" [width]="20">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <i class="md darken-1 icon-color" [ngClass]="icon(value)"></i>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="SECTION" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value | titlecase }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="TITLE"></ngx-datatable-column>
+          <ngx-datatable-column name="CREATED" [width]="100" prop="createdAt"></ngx-datatable-column>
+          <ngx-datatable-column name="ACTION" [width]="100" prop="$key">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <button type="button" class="btn btn-link btn-lg" data-title="Edit item" (click)="edit(row)"><i class="md md-edit"></i></button>
+              <a [routerLink]="['/cv', row.$key]" class="btn btn-link btn-lg" data-title="View item"><i class="md md-perm-media"></i></a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
 
         <div class="table-responsive well no-padding white no-margin">
-
           <div class="btn-group pull-right">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Default <span class="caret"></span><div class="ripple-wrapper"></div></button>
             <ul class="dropdown-menu">
@@ -103,7 +144,6 @@
                 <th width="100">Icon</th>
                 <th fsm-sort="firstname" style="cursor: pointer; ">Section&nbsp;<i class="md md-sort"></i></th>
                 <th fsm-sort="lastname" style="cursor: pointer; ">Title&nbsp;<i class="md md-sort"></i></th>
-                <!-- <th>More</th> -->
                 <th>Created</th>
                 <th class="text-right">Actions</th>
               </tr>
@@ -116,19 +156,14 @@
                 </td>
                 <td>{{ item.section | titlecase }}</td>
                 <td>{{ item.title }}</td>
-                <!-- <td>{{ item.value.subtitle }}</td> -->
                 <td>{{ item.createdAt }}</td>
                 <td class="text-right">
-                  <!-- <button type="button" class="btn btn-link btn-round" data-title="Delete item" (click)="del(item)"><i class="md md-delete"></i></button> -->
                   <button type="button" class="btn btn-link btn-round" data-title="Edit item" (click)="edit(item)"><i class="md md-edit"></i></button>
                   <a [routerLink]="['/cv', item.$key]" class="btn btn-link btn-round" data-title="View item"><i class="md md-perm-media"></i></a>
                 </td>
               </tr>
             </tbody>
           </table>
-
-          <md-spinner *ngIf="busy$ | async"></md-spinner>
-
         </div>
       </div>
 

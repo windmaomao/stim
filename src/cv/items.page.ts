@@ -1,5 +1,5 @@
 /**
- * List page component
+ * Cv items page component
  *
  * @date 08/21/17
  * @author Fang Jin <windmaomao@gmail.com>
@@ -12,7 +12,6 @@ import * as _ from 'lodash';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/zip';
 import 'rxjs/add/operator/distinctUntilChanged';
 // import 'rxjs/add/observable/of';
@@ -20,8 +19,10 @@ import 'rxjs/add/operator/distinctUntilChanged';
 // import 'rxjs/add/operator/debounceTime';
 // import 'rxjs/add/operator/switchMap';
 
+import { SpinnerService } from '../layout/spinner.service';
+
 @Component({
-  templateUrl: './items.page.component.html',
+  templateUrl: './items.page.html',
   styleUrls: ['./cv.scss']
 })
 export class CvItemsPageComponent implements OnInit {
@@ -35,9 +36,8 @@ export class CvItemsPageComponent implements OnInit {
   _sectionsAll: any[];
   entries: any[];
   metas: any;
-  busy$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-  constructor(private ds: CvService) {
+  constructor(private ds: CvService, private ss: SpinnerService) {
     this.selected = this.item();
     this.icons = {
       project: 'md-web blue',
@@ -54,6 +54,17 @@ export class CvItemsPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ss.start();
+    this.filter$.distinctUntilChanged().subscribe(filter => {
+      this.ss.start();
+      if (!filter) {
+        this.entries = _.clone(this._entriesAll);
+      } else {
+        this.entries = _.filter(this._entriesAll, filter);
+      }
+      this.ss.stop();
+    });
+
     Observable.zip(
       this.ds.entries(),
       this.ds.types(),
@@ -65,17 +76,6 @@ export class CvItemsPageComponent implements OnInit {
       this.filter$.next('');
     });
 
-    this.filter$.distinctUntilChanged()
-      .subscribe(filter => {
-        this.busy$.next(true);
-        if (!filter) {
-          this.entries = _.clone(this._entriesAll);
-        } else {
-          this.entries = _.filter(this._entriesAll, filter);
-        }
-        this.busy$.next(false);
-      })
-    ;
   }
 
   // returns entries list obserable

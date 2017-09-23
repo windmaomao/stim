@@ -6,26 +6,22 @@
  * @author Fang Jin <windmaomao@gmail.com>
  */
 
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StLayoutModule } from '../layout/layout.module';
 import { ApiModule } from '../api/api.module';
-
-import { cvComponents, cvRoutes } from './cv.routes';
-
+import { CvComponents, CvRoutes } from './cv.routes';
 import { MarkdownModule } from 'angular2-markdown';
 
 @NgModule({
   imports: [
-    BrowserModule,
     StLayoutModule,
     ApiModule,
-    RouterModule.forChild(cvRoutes),
+    RouterModule.forChild(CvRoutes),
     MarkdownModule.forRoot(),
   ],
   declarations: [
-    cvComponents
+    CvComponents
   ],
   providers: [],
   bootstrap: []

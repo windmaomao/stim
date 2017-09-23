@@ -23,7 +23,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "@swimlane/ngx-datatable": "^10.2.1",
+    "@swimlane/ngx-datatable": "^10.2.3",
     "angular2-markdown": "^1.6.0",
     "angularfire2": "^4.0.0-rc.2",
     "core-js": "^2.4.1",

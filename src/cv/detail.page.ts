@@ -12,7 +12,7 @@ import { MdSidenav } from '@angular/material';
 import { CvService } from '../api/cv.service' ;
 
 @Component({
-  templateUrl: './detail.page.component.html',
+  templateUrl: './detail.page.html',
   styleUrls: ['./cv.scss']
 })
 export class CvDetailPageComponent implements OnInit, OnDestroy {

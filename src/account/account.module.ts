@@ -11,7 +11,6 @@ import { StLayoutModule } from '../layout/layout.module';
 import { ApiModule } from '../api/api.module';
 import { RouterModule } from '@angular/router';
 import { AccountComponents, AccountRoutes } from './account.routes';
-// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AccountEditDialogComponent } from './account.edit.dialog';
 
 @NgModule({

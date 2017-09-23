@@ -20,6 +20,16 @@ export class WatchListPageComponent implements OnInit {
     this.icons = {
       long: 'md-trending-up green',
       short: 'md-trending-down lime',
+      tech: 'md-web blue',
+      publication: 'md-my-library-books teal',
+      company: 'md-domain purple',
+      repo: 'md-cloud-queue lime',
+      education: 'md-school orange',
+      award: 'md-stars red',
+      blog: 'md-my-library-books light-blue',
+      picture: 'md-image orange',
+      recommend: 'md-thumb-up green',
+      profile: 'md-portrait deep-orange',
     };
   }
   ngOnInit() {

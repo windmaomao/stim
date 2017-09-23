@@ -19,41 +19,51 @@
     </section>
 
     <div *ngIf="watches">
-
       <div class="table-responsive well no-padding white no-margin">
-
         <h3 class="table-title">
           Watches ({{ watches.length }})
           <small></small>
         </h3>
-
-        <table class="table table-full m-b-60">
-          <thead>
-            <tr>
-              <th width="100">Icon</th>
-              <th>Symbol<i class="md md-sort"></i></th>
-              <th>Profit<i class="md md-sort"></i></th>
-              <th>Risk<i class="md md-sort"></i></th>
-              <th>Sector<i class="md md-sort"></i></th>
-              <th class="text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of watches">
-              <td class="f20">
-                <i class="md darken-1 icon-color" [ngClass]="icons[item.type]"></i>
-              </td>
-              <td>{{ item.symbol | uppercase }}</td>
-              <td>{{ item.profit | number:'.2' }}%</td>
-              <td>{{ item.risk | number:'.2' }}%</td>
-              <td>{{ item.sector | titlecase }}</td>
-              <td class="text-right">
-                <a class="btn btn-link btn-round" data-title="Edit item"><i class="md md-edit"></i></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
+
+      <ngx-datatable
+        class="material expandable"
+        [rows]="watches"
+        [sortType]="'multi'"
+        [columnMode]="'force'"
+        [headerHeight]="42"
+        [rowHeight]="50"
+      >
+        <ngx-datatable-column name="ICON" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <i class="md darken-1 icon-color" [ngClass]="icons[row.sector]"></i>
+            <i class="md darken-1 icon-color" [ngClass]="icons[row.type]"></i>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="SECTOR" [width]="100">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value | titlecase }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="SYMBOL"></ngx-datatable-column>
+        <ngx-datatable-column name="PROFIT" [width]="100">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value | number:'.2' }}%
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="RISK" [width]="100">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value | number:'.2' }}%
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="CREATED" [width]="100" prop="date"></ngx-datatable-column>
+        <ngx-datatable-column name="ACTION" [width]="100" prop="$key">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <button type="button" class="btn btn-link btn-lg" data-title="Edit item" (click)="edit(row)"><i class="md md-edit"></i></button>
+            <a [routerLink]="['/cv', row.$key]" class="btn btn-link btn-lg" data-title="View item"><i class="md md-perm-media"></i></a>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
     </div>
   </div>
 

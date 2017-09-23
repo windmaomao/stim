@@ -27,4 +27,7 @@ export class TradeService {
   trades(): Observable<any[]> {
     return this.list('trades');
   }
+  watches(): Observable<any[]> {
+    return this.list('watches');
+  }
 }

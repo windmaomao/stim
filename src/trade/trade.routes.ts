@@ -7,14 +7,14 @@
 
 import { Route } from "@angular/router";
 import { TradeListPageComponent } from "./trade.list.page";
-// import { AccountEditDialogComponent } from "./account.edit.dialog";
+import { WatchListPageComponent } from "./watch.list.page";
 
 export const TradeRoutes: Route[] = [
   { path: 'trades', component: TradeListPageComponent },
-  // { path: 'statements/:year/:month', component: AccountStatementPageComponent }
+  { path: 'watches', component: WatchListPageComponent },
 ]
 
 export const TradeComponents = [
   TradeListPageComponent,
-  // AccountEditDialogComponent
+  WatchListPageComponent
 ]

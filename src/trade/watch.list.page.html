@@ -34,10 +34,10 @@
         [headerHeight]="42"
         [rowHeight]="50"
       >
-        <ngx-datatable-column name="ICON" [width]="100">
+        <ngx-datatable-column name="ICON" [width]="120">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <i class="md darken-1 icon-color" [ngClass]="icons[row.sector]"></i>
-            <i class="md darken-1 icon-color" [ngClass]="icons[row.type]"></i>
+            <i class="md darken-1 icon-color {{ colors[row.class] }}" [ngClass]="icons[row.type]"></i>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="SYMBOL"></ngx-datatable-column>

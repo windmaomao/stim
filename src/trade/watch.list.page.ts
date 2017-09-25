@@ -16,6 +16,7 @@ import 'rxjs/add/observable/zip';
 export class WatchListPageComponent implements OnInit {
   watches: any[];
   icons: any;
+  colors: any;
   constructor(private ds: TradeService) {
     this.icons = {
       long: 'md-trending-up green',
@@ -31,6 +32,9 @@ export class WatchListPageComponent implements OnInit {
       recommend: 'md-thumb-up green',
       profile: 'md-portrait deep-orange',
     };
+    this.colors = {
+      watch: 'red'
+    }
   }
   ngOnInit() {
     Observable.zip(

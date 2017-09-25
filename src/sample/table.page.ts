@@ -30,5 +30,18 @@ export class SampleTablePageComponent {
 
   selectedSection: string;
   sections = [ 'steak', 'pizza', 'tacos' ];
+
+  _opened: boolean = false;
+  editor(status) {
+    this._opened = status;
+  }
+  edit() {
+    this.editor(1);
+  }
+  close() {
+    this.editor(0);
+  }
+
+
   constructor() {}
 }

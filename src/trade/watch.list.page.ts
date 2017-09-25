@@ -9,6 +9,9 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { TradeService } from '../api/trade.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/zip';
+import { SpinnerService } from '../layout/spinner.service';
+import { MdDialog } from '@angular/material';
+import { WatchEditDialogComponent } from './watch.edit.dialog';
 
 @Component({
   templateUrl: './watch.list.page.html',
@@ -16,8 +19,12 @@ import 'rxjs/add/observable/zip';
 export class WatchListPageComponent implements OnInit {
   watches: any[];
   icons: any;
-  colors: any;
-  constructor(private ds: TradeService) {
+  actions: any;
+  constructor(
+    private ds: TradeService,
+    private ss: SpinnerService,
+    private dialog: MdDialog
+  ) {
     this.icons = {
       long: 'md-trending-up green',
       short: 'md-trending-down',
@@ -28,15 +35,16 @@ export class WatchListPageComponent implements OnInit {
       education: 'md-school orange',
       healthcare: 'md-local-hospital light-blue',
       industry: 'md-local-laundry-service yellow',
-      financial: 'md-local-atm green',
-      recommend: 'md-thumb-up green',
+      finance: 'md-account-balance light-blue darken-4',
+      estate: 'md-domain blue darken-2',
       profile: 'md-portrait deep-orange',
     };
-    this.colors = {
-      watch: 'red'
+    this.actions = {
+      watch: 'md-insert-chart red'
     }
   }
   ngOnInit() {
+    this.ss.start();
     Observable.zip(
       this.ds.watches(),
     ).subscribe(([watches]) => {
@@ -59,6 +67,29 @@ export class WatchListPageComponent implements OnInit {
         item['score'] = item.profit / item.risk;
       });
       this.watches = watches;
+      this.ss.stop();
     });
   }
+
+  edit(row) {
+    let dialogRef = this.dialog.open(WatchEditDialogComponent, {
+      width: '250px',
+      data: { item: row }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.save(res);
+      }
+    })
+  }
+
+  save(row) {
+    this.ds.updateWatch(row.$key, row);
+  }
+
+  // getRowClass(row) {
+  //   return {
+  //     'datatable-row-active': 'quantity' in row
+  //   };
+  // }
 }

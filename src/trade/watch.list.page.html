@@ -34,13 +34,17 @@
         [headerHeight]="42"
         [rowHeight]="50"
       >
-        <ngx-datatable-column name="ICON" [width]="120">
+        <ngx-datatable-column name="ICON" [width]="100">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <i class="md darken-1 icon-color" [ngClass]="icons[row.sector]"></i>
-            <i class="md darken-1 icon-color {{ colors[row.class] }}" [ngClass]="icons[row.type]"></i>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="SYMBOL"></ngx-datatable-column>
+        <ngx-datatable-column name="ACTION" [width]="80">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <i class="md darken-1 icon-color" [ngClass]="actions[row.action]"></i>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="SYMBOL" [width]="80"></ngx-datatable-column>
         <ngx-datatable-column name="PROFIT" [width]="100">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value | number:'.0-2' }}%
@@ -56,6 +60,8 @@
             {{ value | number:'.0-0' }}
           </ng-template>
         </ngx-datatable-column>
+        <ngx-datatable-column name="OWN" [width]="80" prop="quantity">
+        </ngx-datatable-column>
         <ngx-datatable-column name="SECTOR" [width]="100">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value | titlecase }}
@@ -70,7 +76,6 @@
         <ngx-datatable-column name="ACTION" [width]="100" prop="$key">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <button type="button" class="btn btn-link btn-lg" data-title="Edit item" (click)="edit(row)"><i class="md md-edit"></i></button>
-            <a [routerLink]="['/cv', row.$key]" class="btn btn-link btn-lg" data-title="View item"><i class="md md-perm-media"></i></a>
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>

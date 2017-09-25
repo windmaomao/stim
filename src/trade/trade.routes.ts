@@ -8,6 +8,7 @@
 import { Route } from "@angular/router";
 import { TradeListPageComponent } from "./trade.list.page";
 import { WatchListPageComponent } from "./watch.list.page";
+import { WatchEditDialogComponent } from "./watch.edit.dialog";
 
 export const TradeRoutes: Route[] = [
   { path: 'trades', component: TradeListPageComponent },
@@ -16,5 +17,6 @@ export const TradeRoutes: Route[] = [
 
 export const TradeComponents = [
   TradeListPageComponent,
-  WatchListPageComponent
+  WatchListPageComponent,
+  WatchEditDialogComponent,
 ]

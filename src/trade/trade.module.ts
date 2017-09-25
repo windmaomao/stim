@@ -5,18 +5,15 @@
  * @author Fang Jin <windmaomao@gmail.com>
  */
 
-// import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { StLayoutModule } from '../layout/layout.module';
 import { ApiModule } from '../api/api.module';
 import { RouterModule } from '@angular/router';
 import { TradeComponents, TradeRoutes } from './trade.routes';
-
-// import { AccountEditDialogComponent } from './account.edit.dialog';
+import { WatchEditDialogComponent } from './watch.edit.dialog';
 
 @NgModule({
   imports: [
-    // BrowserModule,
     StLayoutModule,
     ApiModule,
     RouterModule.forChild(TradeRoutes),
@@ -25,7 +22,7 @@ import { TradeComponents, TradeRoutes } from './trade.routes';
     TradeComponents
   ],
   entryComponents: [
-    // AccountEditDialogComponent
+    WatchEditDialogComponent
   ],
   providers: [],
   bootstrap: []

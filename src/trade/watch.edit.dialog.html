@@ -1,0 +1,37 @@
+<h1 md-dialog-title>Edit watch</h1>
+<div md-dialog-content>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Created" [(ngModel)]="data.item.date">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Symbol" [(ngModel)]="data.item.symbol">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Sector" [(ngModel)]="data.item.sector">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Industry" [(ngModel)]="data.item.industry">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Type: short or long" [(ngModel)]="data.item.type">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Price" [(ngModel)]="data.item.price">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Target Price" [(ngModel)]="data.item.target">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Exit Price" [(ngModel)]="data.item.exit">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Owned shares" [(ngModel)]="data.item.quantity">
+  </md-form-field>
+  <md-form-field>
+    <input mdInput tabindex="1" placeholder="Action: watch etc." [(ngModel)]="data.item.action">
+  </md-form-field>
+</div>
+<div md-dialog-actions>
+  <button md-button [md-dialog-close]="data.item" tabindex="2">Ok</button>
+  <button md-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>

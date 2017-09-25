@@ -13,6 +13,7 @@ import { StLayoutModule } from '../layout/layout.module';
 
 import { sampleComponents, sampleRoutes } from './sample.routes';
 import { Ng2TableModule } from '../ng2-table/ng-table-module';
+import { SidebarModule } from 'ng-sidebar';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { Ng2TableModule } from '../ng2-table/ng-table-module';
     StLayoutModule,
     RouterModule.forChild(sampleRoutes),
     Ng2TableModule,
+    SidebarModule.forRoot()
   ],
   declarations: [
     sampleComponents

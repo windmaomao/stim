@@ -19,6 +19,12 @@
   .datatable-body {
     .datatable-body-row {
       border-bottom: 1px solid #F0F0F0;
+      &.datatable-row-odd {
+        background-color: #F9F9F9;
+      }
+      // &.datatable-row-active {
+      //   background-color: #d6d6d6;
+      // }
       .datatable-body-cell {
         font-size: 1.3rem;
         line-height: 2.4em;

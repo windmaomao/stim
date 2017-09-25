@@ -43,20 +43,25 @@
         <ngx-datatable-column name="SYMBOL"></ngx-datatable-column>
         <ngx-datatable-column name="PROFIT" [width]="100">
           <ng-template let-value="value" ngx-datatable-cell-template>
-            {{ value | number:'.2' }}%
+            {{ value | number:'.0-2' }}%
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="RISK" [width]="100">
           <ng-template let-value="value" ngx-datatable-cell-template>
-            {{ value | number:'.2' }}%
+            {{ value | number:'.0-2' }}%
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="SCORE" [width]="100">
           <ng-template let-value="value" ngx-datatable-cell-template>
-            {{ value | number:'.1' }}
+            {{ value | number:'.0-0' }}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="SECTOR" [width]="100">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value | titlecase }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="INDUSTRY" [width]="100">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value | titlecase }}
           </ng-template>

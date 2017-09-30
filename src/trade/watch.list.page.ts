@@ -28,7 +28,7 @@ export class WatchListPageComponent implements OnInit {
     this.icons = {
       long: 'md-trending-up green',
       short: 'md-trending-down',
-      tech: 'md-sd-storage deep-orange',
+      tech: 'md-memory deep-orange',
       material: 'md-blur-on black',
       consumer: 'md-store-mall-directory purple',
       auto: 'md-local-gas-station lime',
@@ -37,10 +37,12 @@ export class WatchListPageComponent implements OnInit {
       industry: 'md-local-laundry-service yellow',
       finance: 'md-account-balance light-blue darken-4',
       estate: 'md-domain blue darken-2',
-      profile: 'md-portrait deep-orange',
+      etf: 'md-texture light-green',
     };
     this.actions = {
-      watch: 'md-insert-chart red'
+      watch: 'md-insert-chart yellow',
+      sell: 'md-trending-down red',
+      buy: 'md-trending-up green'
     }
   }
   ngOnInit() {

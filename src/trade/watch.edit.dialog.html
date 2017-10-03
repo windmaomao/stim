@@ -1,38 +1,40 @@
 <h1 md-dialog-title>Edit watch</h1>
 <div md-dialog-content>
-  <md-form-field>
-    <input mdInput placeholder="Date" [(ngModel)]="data.item.date">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput tabindex="1" placeholder="Symbol" [(ngModel)]="data.item.symbol">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Sector" [(ngModel)]="data.item.sector">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Industry" [(ngModel)]="data.item.industry">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Type: short or long" [(ngModel)]="data.item.type">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Price" [(ngModel)]="data.item.price">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Target Price" [(ngModel)]="data.item.target">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Exit Price" [(ngModel)]="data.item.exit">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Owned shares" [(ngModel)]="data.item.quantity">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Action: watch etc." [(ngModel)]="data.item.action">
-  </md-form-field>
-  <md-form-field>
-    <input mdInput placeholder="Note" [(ngModel)]="data.item.note">
-  </md-form-field>
+  <form (keyup.enter)="onEnter()">
+    <md-form-field>
+      <input mdInput placeholder="Date" [(ngModel)]="data.item.date" name="date">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput tabindex="1" placeholder="Symbol" [(ngModel)]="data.item.symbol" name="symbol">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Sector" [(ngModel)]="data.item.sector" name="sector">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Industry" [(ngModel)]="data.item.industry" name="industry">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Type: short or long" [(ngModel)]="data.item.type" name="type">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Price" [(ngModel)]="data.item.price" name="price">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Target Price" [(ngModel)]="data.item.target" name="target">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Exit Price" [(ngModel)]="data.item.exit" name="exit">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Owned shares" [(ngModel)]="data.item.quantity" name="quantity">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Action: watch etc." [(ngModel)]="data.item.action" name="action">
+    </md-form-field>
+    <md-form-field>
+      <input mdInput placeholder="Note" [(ngModel)]="data.item.note" name="note">
+    </md-form-field>
+  </form>
 </div>
 <div md-dialog-actions>
   <button md-button [md-dialog-close]="data.item" tabindex="2">Ok</button>

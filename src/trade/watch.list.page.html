@@ -71,15 +71,19 @@
             {{ value | titlecase }}
           </ng-template>
         </ngx-datatable-column> -->
-        <ngx-datatable-column name="ACTION" [width]="120">
+        <ngx-datatable-column name="ACT" [width]="80" prop="action">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <i class="md darken-1 icon-color" [ngClass]="actions[row.action]"></i>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="NOTE" [width]="80" prop="note">
+          <ng-template let-row="row" ngx-datatable-cell-template>
             <i class="md lighten-1 icon-color md-insert-comment blue" title="{{ row.note }}" *ngIf="row.note"></i>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="DATE" [width]="100">
         </ngx-datatable-column>
-        <ngx-datatable-column name="" [width]="100" prop="$key">
+        <ngx-datatable-column name="ACTION" [width]="100" prop="$key">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <button type="button" class="btn btn-link btn-lg" data-title="Edit item" (click)="edit(row)"><i class="md md-edit"></i></button>
           </ng-template>

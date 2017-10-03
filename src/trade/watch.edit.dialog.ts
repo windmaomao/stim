@@ -22,4 +22,8 @@ export class WatchEditDialogComponent {
     this.dialogRef.close();
   }
 
+  onEnter() {
+    this.dialogRef.close(this.data.item);
+  }
+
 }

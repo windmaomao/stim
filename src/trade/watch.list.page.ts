@@ -66,7 +66,11 @@ export class WatchListPageComponent implements OnInit {
             }
           }
         }
-        item['score'] = item.profit / item.risk;
+        if (item.risk && item.profit ) {
+          item['score'] = item.profit / item.risk;
+        } else {
+          item['score'] = 0;
+        }
       });
       this.watches = watches;
       this.ss.stop();
@@ -80,13 +84,28 @@ export class WatchListPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.save(res);
+        this.ds.updateWatch(res.$key, res);
       }
     })
   }
 
   save(row) {
-    this.ds.updateWatch(row.$key, row);
+  }
+
+  add() {
+    let row = {
+      date: '2017-10-02', symbol: '', type: 'short', price: 0
+    };
+    let dialogRef = this.dialog.open(WatchEditDialogComponent, {
+      width: '250px',
+      data: { item: row }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        let key = res.symbol.toLowerCase();
+        this.ds.updateWatch(key, row);
+      }
+    })
   }
 
   // getRowClass(row) {

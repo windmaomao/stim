@@ -12,6 +12,7 @@ import 'rxjs/add/observable/zip';
 import { SpinnerService } from '../layout/spinner.service';
 import { MdDialog } from '@angular/material';
 import { WatchEditDialogComponent } from './watch.edit.dialog';
+import * as moment from "moment";
 
 @Component({
   templateUrl: './watch.list.page.html',
@@ -84,6 +85,7 @@ export class WatchListPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
+        res.date = this.today();
         this.ds.updateWatch(res.$key, res);
       }
     })
@@ -94,7 +96,7 @@ export class WatchListPageComponent implements OnInit {
 
   add() {
     let row = {
-      date: '2017-10-02', symbol: '', type: 'short', price: 0
+      date: this.today(), symbol: '', type: 'short', price: 0
     };
     let dialogRef = this.dialog.open(WatchEditDialogComponent, {
       width: '250px',
@@ -106,6 +108,10 @@ export class WatchListPageComponent implements OnInit {
         this.ds.updateWatch(key, row);
       }
     })
+  }
+
+  today() {
+    return moment().format('YYYY-MM-DD');
   }
 
   // getRowClass(row) {

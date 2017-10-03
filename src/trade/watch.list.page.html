@@ -39,12 +39,7 @@
       >
         <ngx-datatable-column name="ICON" [width]="100">
           <ng-template let-row="row" ngx-datatable-cell-template>
-            <i class="md darken-1 icon-color" [ngClass]="icons[row.sector]"></i>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="ACTION" [width]="80">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            <i class="md darken-1 icon-color" [ngClass]="actions[row.action]"></i>
+            <i class="md darken-1 icon-color" [ngClass]="icons[row.sector]" title="{{ row.sector + ' - ' + row.industry }}"></i>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="SYMBOL" [width]="80">
@@ -64,7 +59,7 @@
             {{ value | number:'.0-2' }}%
           </ng-template>
         </ngx-datatable-column> -->
-        <ngx-datatable-column name="SCORE" [width]="100">
+        <ngx-datatable-column name="SCORE" [width]="80">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{ value | number:'.0-0' }}
           </ng-template>
@@ -76,14 +71,15 @@
             {{ value | titlecase }}
           </ng-template>
         </ngx-datatable-column> -->
-        <ngx-datatable-column name="INDUSTRY" [width]="100">
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            {{ value | titlecase }}
+        <ngx-datatable-column name="ACTION" [width]="120">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <i class="md darken-1 icon-color" [ngClass]="actions[row.action]"></i>
+            <i class="md lighten-1 icon-color md-insert-comment blue" title="{{ row.note }}" *ngIf="row.note"></i>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="DATE" [width]="100">
         </ngx-datatable-column>
-        <ngx-datatable-column name="ACTION" [width]="100" prop="$key">
+        <ngx-datatable-column name="" [width]="100" prop="$key">
           <ng-template let-row="row" ngx-datatable-cell-template>
             <button type="button" class="btn btn-link btn-lg" data-title="Edit item" (click)="edit(row)"><i class="md md-edit"></i></button>
           </ng-template>
